@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "Satelite-Shop": {
@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Satelite-Shop"
+    }
+  },
+  "defaultProject": "Satelite-Shop",
+  "cli": {
+    "analytics": "6e952a95-abc7-474f-b2ec-e980262df8fc"
+  }
 }
