@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {SatelliteService} from '../shared/satellite.service';
+import {Observable} from 'rxjs';
+import {Satellite} from '../shared/satellite';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-satelite-info',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SatelliteInfoComponent implements OnInit {
 
-  constructor() { }
+  satellite$: Observable<Satellite>;
+
+  constructor(private satelliteService: SatelliteService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  getSattelite() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.satellite$ = this.satelliteService.getSatellite(id);
   }
 
 }
