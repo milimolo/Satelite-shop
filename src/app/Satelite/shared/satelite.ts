@@ -1,9 +1,9 @@
 export interface Satelite {
-  ID: string;
-  Model: string;
-  Brand: string;
-  Price: number;
-  Weight: number;
-  Volume: number;
-  MaxRange: number;
+  id: string;
+  model: string;
+  brand: string;
+  price: number;
+  weight: number;
+  volume: number;
+  maxRange: number;
 }
