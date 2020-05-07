@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "first-project-auth-bfb92": {
+      "hosting": {
+        "Satelite-Shop": [
+          "first-project-auth-bfb92"
+        ]
+      }
+    }
+  }
+}
