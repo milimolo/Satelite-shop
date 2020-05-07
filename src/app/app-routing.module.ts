@@ -5,7 +5,7 @@ import {SatelliteListComponent} from './Products/Satelite/satellite-list/satelli
 
 const routes: Routes = [
   { path: 'satellites', component: SatelliteListComponent}
-]
+];
 
 @NgModule({
   declarations: [],

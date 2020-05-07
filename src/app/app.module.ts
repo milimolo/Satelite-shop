@@ -11,13 +11,15 @@ import { SatelliteListComponent } from './Products/Satelite/satellite-list/satel
 import { SatelliteInfoComponent } from './Products/Satelite/satellite-info/satellite-info.component';
 import {environment} from '../environments/environment';
 import {AppRoutingModule} from './app-routing.module';
+import { NavbarComponent } from './Navbar/navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SatelliteListComponent,
-    SatelliteInfoComponent
+    SatelliteInfoComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
