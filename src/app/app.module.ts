@@ -12,6 +12,8 @@ import { SatelliteInfoComponent } from './Products/Satelite/satellite-info/satel
 import {environment} from '../environments/environment';
 import {AppRoutingModule} from './app-routing.module';
 import { NavbarComponent } from './Navbar/navbar/navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule} from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -22,9 +24,11 @@ import { NavbarComponent } from './Navbar/navbar/navbar.component';
     NavbarComponent
   ],
   imports: [
+    MatToolbarModule,
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
