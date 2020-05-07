@@ -12,7 +12,6 @@ import { SateliteInfoComponent } from './satelite/satelite-info/satelite-info.co
 import {environment} from '../environments/environment';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
