@@ -7,16 +7,16 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { SateliteListComponent } from './satelite/satelite-list/satelite-list.component';
-import { SateliteInfoComponent } from './satelite/satelite-info/satelite-info.component';
+import { SatelliteListComponent } from './satellite/satellite-list/satellite-list.component';
+import { SatelliteInfoComponent } from './satellite/satellite-info/satellite-info.component';
 import {environment} from '../environments/environment';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SateliteListComponent,
-    SateliteInfoComponent
+    SatelliteListComponent,
+    SatelliteInfoComponent
   ],
   imports: [
     BrowserModule,

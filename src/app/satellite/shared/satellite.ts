@@ -1,4 +1,4 @@
-export interface Satelite {
+export interface Satellite {
   id: string;
   model: string;
   brand: string;
