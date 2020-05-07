@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {from, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Satellite} from './satellite';
@@ -9,6 +9,7 @@ import {Satellite} from './satellite';
 })
 export class SatelliteService {
 
+  private satelliteDoc: AngularFirestoreDocument<Satellite>;
   private satelliteCollection: AngularFirestoreCollection<Satellite>;
   constructor(private afs: AngularFirestore) {
     this.satelliteCollection = afs.collection('Satellites');
@@ -25,5 +26,16 @@ export class SatelliteService {
         });
       })
     ));
+  }
+
+  getSatellite(id: string): Observable<Satellite> {
+    this.satelliteDoc = this.afs.doc<Satellite>('Satellites/' + id);
+    return this.satelliteDoc.snapshotChanges().pipe(
+      map(s => {
+        const satellite = s.payload.data() as Satellite;
+        satellite.id = id;
+        return satellite;
+      })
+    );
   }
 }
