@@ -19,13 +19,13 @@ describe('AppComponent', () => {
   it(`should have as title 'Satelite-Shop'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('Satelite-Shop');
+    expect(app.title).toEqual('Satellite-Shop');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('Satelite-Shop app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('Satellite-Shop app is running!');
   });
 });
