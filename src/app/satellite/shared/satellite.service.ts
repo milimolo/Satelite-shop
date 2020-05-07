@@ -1,19 +1,29 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore} from '@angular/fire/firestore';
-import {Router} from '@angular/router';
-import {FormControl, FormGroup} from '@angular/forms';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
+import {from, Observable} from 'rxjs';
+import {Satellite} from './satellite';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SatelliteService {
 
-  constructor(private afs: AngularFirestore,
-              private router: Router) { }
+  private satelliteCollection: AngularFirestoreCollection<Satellite>;
+  constructor(private afs: AngularFirestore) {
+    this.satelliteCollection = afs.collection('Satellites');
+  }
 
-  form = new FormGroup({
-    model: new FormControl(''),
-    photo: new FormControl(''),
-    price: new FormControl('')
-  });
+  getAllSatellites(): Observable<Satellite[]> {
+    return from(this.satelliteCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(s => {
+          const satellite = s.payload.doc.data() as Satellite;
+          const id = s.payload.doc.id;
+          satellite.id = id;
+          return satellite;
+        });
+      })
+    ));
+  }
 }
