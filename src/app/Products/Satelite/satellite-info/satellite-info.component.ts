@@ -14,8 +14,7 @@ export class SatelliteInfoComponent implements OnInit {
   satellite$: Observable<Satellite>;
 
   constructor(private satelliteService: SatelliteService,
-              private route: ActivatedRoute,
-              private router: Router) { }
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getSattelite();
