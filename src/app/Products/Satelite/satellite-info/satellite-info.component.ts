@@ -18,6 +18,7 @@ export class SatelliteInfoComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
+    this.getSattelite();
   }
 
   getSattelite() {

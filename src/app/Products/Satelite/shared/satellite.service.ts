@@ -29,7 +29,7 @@ export class SatelliteService {
   }
 
   getSatellite(id: string): Observable<Satellite> {
-    this.satelliteDoc = this.afs.doc<Satellite>('products/' + id);
+    this.satelliteDoc = this.afs.doc<Satellite>('Satellites/' + id);
     return this.satelliteDoc.snapshotChanges().pipe(
       map(s => {
         const satellite = s.payload.data() as Satellite;
