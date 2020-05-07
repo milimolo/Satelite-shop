@@ -3,8 +3,19 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: 'AIzaSyAAVgyiaP2VjsSktf9Xk8ooRhtFIpiU-nA',
+    authDomain: 'satelite-database.firebaseapp.com',
+    databaseURL: 'https://satelite-database.firebaseio.com',
+    projectId: 'satelite-database',
+    storageBucket: 'satelite-database.appspot.com',
+    messagingSenderId: '112771841346',
+    appId: '1:112771841346:web:992bbbeba620f6ede85cdb',
+    measurementId: 'G-D73H65QJT6'
+  }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file
