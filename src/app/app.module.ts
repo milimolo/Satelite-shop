@@ -10,6 +10,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { SateliteListComponent } from './Products/Satelite/satelite-list/satelite-list.component';
 import { SateliteInfoComponent } from './Products/Satelite/satelite-info/satelite-info.component';
 import {environment} from '../environments/environment';
+import {AppRoutingModule} from './app-routing.module';
 
 
 @NgModule({
@@ -20,8 +21,8 @@ import {environment} from '../environments/environment';
   ],
   imports: [
     BrowserModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
-
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
