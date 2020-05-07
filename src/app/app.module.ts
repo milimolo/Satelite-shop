@@ -22,6 +22,7 @@ import {AppRoutingModule} from './app-routing.module';
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AppRoutingModule,
     AppRoutingModule
   ],
   providers: [],
