@@ -7,8 +7,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { SateliteListComponent } from './Products/Satelite/satelite-list/satelite-list.component';
-import { SateliteInfoComponent } from './Products/Satelite/satelite-info/satelite-info.component';
+import { SatelliteListComponent } from './Products/Satelite/satellite-list/satellite-list.component';
+import { SatelliteInfoComponent } from './Products/Satelite/satellite-info/satellite-info.component';
 import {environment} from '../environments/environment';
 import {AppRoutingModule} from './app-routing.module';
 
@@ -16,8 +16,8 @@ import {AppRoutingModule} from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
-    SateliteListComponent,
-    SateliteInfoComponent
+    SatelliteListComponent,
+    SatelliteInfoComponent
   ],
   imports: [
     BrowserModule,

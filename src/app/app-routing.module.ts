@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {SatelliteListComponent} from './satellite/satellite-list/satellite-list.component';
+import {SatelliteListComponent} from './Products/Satelite/satellite-list/satellite-list.component';
 
 const routes: Routes = [
   { path: 'satellites', component: SatelliteListComponent}

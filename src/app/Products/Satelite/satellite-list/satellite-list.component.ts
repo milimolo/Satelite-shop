@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {SatelliteService} from '../shared/satellite.service';
-import {Satellite} from '../shared/satellite';
 import {Observable} from 'rxjs';
+import {Satellite} from '../shared/satellite';
+import {SatelliteService} from '../shared/satellite.service';
 
 @Component({
   selector: 'app-satelite-list',
@@ -11,7 +11,6 @@ import {Observable} from 'rxjs';
 export class SatelliteListComponent implements OnInit {
 
   satellites$: Observable<Satellite[]>;
-  satellites: Satellite[];
   constructor(private satelliteService: SatelliteService) { }
 
   ngOnInit(): void {
