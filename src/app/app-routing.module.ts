@@ -4,7 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
   { path: 'satellite', loadChildren: () => import('./Products/Satellite/module/satellite.module').then(m => m.SatelliteModule)}
-]
+];
 
 @NgModule({
   declarations: [],

@@ -1,4 +1,5 @@
-import Order = jasmine.Order;
+import {Order} from '../../Orders/shared/order.model';
+
 
 export interface User {
   id: string;
