@@ -12,6 +12,7 @@ import {AppRoutingModule} from './app-routing.module';
 import { NavbarComponent } from './Navbar/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule} from '@angular/material/toolbar';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { MatToolbarModule} from '@angular/material/toolbar';
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

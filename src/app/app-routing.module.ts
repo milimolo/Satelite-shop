@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
-  { path: 'satellite', loadChildren: './Products/Satellite/module/satellite.module#SatelliteModule'}
+  { path: 'satellite', loadChildren: () => import('./Products/Satellite/module/satellite.module').then(m => m.SatelliteModule)}
 ]
 
 @NgModule({
