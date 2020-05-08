@@ -14,6 +14,7 @@ import {AppRoutingModule} from './app-routing.module';
 import { NavbarComponent } from './Navbar/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule} from '@angular/material/toolbar';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MatToolbarModule} from '@angular/material/toolbar';
     AppComponent,
     SatelliteListComponent,
     SatelliteInfoComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginComponent
   ],
   imports: [
     MatToolbarModule,

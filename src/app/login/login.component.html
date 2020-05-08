@@ -1,0 +1,7 @@
+<div *ngIf="auth.user$ else login">
+  <button class="button" (click)="auth.googleSignIn()">Login of Google</button>
+</div>
+<ng-template #login>
+  <button class="button" (click)="auth.signOut()">Logout of Google</button>
+</ng-template>
+<router-outlet></router-outlet>
