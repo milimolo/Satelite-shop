@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {SatelliteService} from '../shared/satellite.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder} from '@angular/forms';
+import {Observable} from "rxjs";
+import {Satellite} from "../shared/satellite";
 
 @Component({
   selector: 'app-satellite-update',
@@ -49,7 +51,11 @@ export class SatelliteUpdateComponent implements OnInit {
   }
 
   onSubmit() {
-    
+    const satellite = this.updateForm.value;
+    this.satelliteService.updateSatellite(satellite)
+      .subscribe(succes => {
+        this.router.navigate(['satellite/']);
+      });
   }
 
 }

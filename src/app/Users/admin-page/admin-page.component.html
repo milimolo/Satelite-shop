@@ -1,0 +1,25 @@
+<h2>Welcome Admin!</h2>
+<div>
+  <mat-card class="product-card">
+    <mat-card-header>
+      <mat-card-title>
+        <h3>Products</h3>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <div *ngFor="let satellite of satellites$ | async">
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <h4 matLine>{{satellite.model}} | {{satellite.brand}}</h4>
+            <div matLine>
+              <button mat-raised-button color="accent">Update</button>
+              <button mat-raised-button color="warn">Delete</button>
+            </div>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </div>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>
