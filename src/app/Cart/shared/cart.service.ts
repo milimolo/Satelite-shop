@@ -1,31 +1,43 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Orderline} from '../../Orders/shared/orderline.model';
 import {Product} from '../../Products/shared/product.model';
+import {SatelliteService} from '../../Products/Satellite/shared/satellite.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  orderline$: Orderline[];
+  orderlines: Orderline[] = [];
+  product: Product;
+  doneLoading: boolean;
 
-  constructor() { }
+  constructor(private satelliteService: SatelliteService) { }
 
-  addToCart(product: Product, amount: number) {
-    const totalPrice = product.price * amount;
-    const orderline: Orderline =  {
-      product,
-      amount,
-      totalPrice
-    };
-    this.orderline$.push(orderline);
+  addToCart(id: string, amount: number) {
+    this.doneLoading = false;
+    this.satelliteService.getSatellite(id).subscribe( productFromSatelliteService => {
+      this.product = {
+        id: productFromSatelliteService.id,
+        price: productFromSatelliteService.price,
+        model: productFromSatelliteService.model,
+        brand: productFromSatelliteService.brand
+      };
+      const totalPrice = this.product.price * amount;
+      const orderline: Orderline = {
+        product: this.product,
+        totalPrice,
+        amount
+      };
+      this.orderlines.push(orderline);
+    });
   }
 
   getCart(): Orderline[] {
-    return this.orderline$;
+    return this.orderlines;
   }
 
   clearCart() {
-    this.orderline$ = [];
+    this.orderlines = [];
   }
 }
