@@ -33,9 +33,15 @@ export class CartService {
     });
   }
 
+  deleteOrderline(orderlineToDelete: Orderline) {
+    this.orderlines = this.orderlines.filter( orderline => orderline !== orderlineToDelete);
+  }
+
   getCart(): Orderline[] {
     return this.orderlines;
   }
+
+  decreaseProduct(orderline: Orderline) {}
 
   clearCart() {
     this.orderlines = [];
