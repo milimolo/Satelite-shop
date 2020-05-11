@@ -49,4 +49,19 @@ export class SatelliteService {
       price: satellite.price
       }));
   }
+
+  createSatellite(satellite: Satellite): Observable<any> {
+    return from(this.afs.collection('Satellites').add({
+      model: satellite.model,
+      brand: satellite.brand,
+      maxRange: satellite.maxRange,
+      volume: satellite.volume,
+      weight: satellite.weight,
+      price: satellite.price
+    }));
+  }
+
+  deleteSatellite(id: string): Observable<any> {
+    return from(this.satelliteCollection.doc(id).delete());
+  }
 }

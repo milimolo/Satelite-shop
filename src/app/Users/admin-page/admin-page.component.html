@@ -3,23 +3,36 @@
   <mat-card class="product-card">
     <mat-card-header>
       <mat-card-title>
-        <h3>Products</h3>
+        <h2>Satellites</h2>
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <mat-list>
+      <mat-accordion>
         <div *ngFor="let satellite of satellites$ | async">
-          <mat-divider></mat-divider>
-          <mat-list-item>
-            <h4 matLine>{{satellite.model}} | {{satellite.brand}}</h4>
-            <div matLine>
-              <button mat-raised-button color="accent">Update</button>
-              <button mat-raised-button color="warn">Delete</button>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{satellite.model}} | {{satellite.brand}}
+              </mat-panel-title>
+              <mat-panel-description>
+                Click for details
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div>
+              <h4>ID: {{satellite.id}}</h4>
+              <h4>Weight: {{satellite.weight}}kg</h4>
+              <h4>Volume: {{satellite.volume}}m</h4>
+              <h4>Max range: {{satellite.maxRange}}km</h4>
+              <h4>Price: {{satellite.price}}kr</h4>
+              <button routerLink="/satellite/update/{{satellite.id}}" mat-raised-button color="accent">Update</button>
+              <button (click)="deleteSatellite(satellite.id)" mat-raised-button color="warn">Delete</button>
             </div>
-          </mat-list-item>
-          <mat-divider></mat-divider>
+          </mat-expansion-panel>
         </div>
-      </mat-list>
+      </mat-accordion>
     </mat-card-content>
+    <mat-card-actions>
+      <button routerLink="/satellite/create" mat-raised-button color="primary">Create Satellite</button>
+    </mat-card-actions>
   </mat-card>
 </div>

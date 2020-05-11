@@ -21,4 +21,11 @@ export class AdminPageComponent implements OnInit {
     this.satellites$ = this.satelliteService.getAllSatellites();
   }
 
+  deleteSatellite(id: string) {
+    const subscription = this.satelliteService.deleteSatellite(id)
+      .subscribe(() => {
+        subscription.unsubscribe();
+      });
+  }
+
 }

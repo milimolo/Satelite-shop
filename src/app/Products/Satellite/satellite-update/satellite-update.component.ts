@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {SatelliteService} from '../shared/satellite.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder} from '@angular/forms';
-import {Observable} from "rxjs";
-import {Satellite} from "../shared/satellite";
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-satellite-update',
@@ -24,7 +23,7 @@ export class SatelliteUpdateComponent implements OnInit {
   });
 
   constructor(private satelliteService: SatelliteService,
-              private router: Router,
+              private location: Location,
               private route: ActivatedRoute,
               private fb: FormBuilder) { }
 
@@ -54,7 +53,7 @@ export class SatelliteUpdateComponent implements OnInit {
     const satellite = this.updateForm.value;
     this.satelliteService.updateSatellite(satellite)
       .subscribe(succes => {
-        this.router.navigate(['satellite/']);
+        this.location.back();
       });
   }
 

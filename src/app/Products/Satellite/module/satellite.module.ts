@@ -5,11 +5,16 @@ import {SatelliteInfoComponent} from '../satellite-info/satellite-info.component
 import {SatelliteListComponent} from '../satellite-list/satellite-list.component';
 import {SatelliteUpdateComponent} from '../satellite-update/satellite-update.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {SatelliteCreateComponent} from '../satellite-create/satellite-create.component';
 
 
 
 @NgModule({
-  declarations: [SatelliteInfoComponent, SatelliteListComponent, SatelliteUpdateComponent],
+  declarations: [
+    SatelliteInfoComponent,
+    SatelliteListComponent,
+    SatelliteUpdateComponent,
+    SatelliteCreateComponent],
   imports: [
     CommonModule,
     SatelliteRoutingModule,

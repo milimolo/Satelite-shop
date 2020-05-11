@@ -5,7 +5,8 @@ import { UserRoutingModule } from './user-routing.module';
 import {AdminPageComponent} from '../admin-page/admin-page.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
-import {MatButtonModule} from "@angular/material/button";
+import {MatButtonModule} from '@angular/material/button';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {MatButtonModule} from "@angular/material/button";
     UserRoutingModule,
     MatCardModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatExpansionModule
   ]
 })
 export class UserModule { }
