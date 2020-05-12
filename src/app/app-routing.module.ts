@@ -4,8 +4,11 @@ import {RouterModule, Routes} from '@angular/router';
 import {CartComponent} from './Cart/cart/cart.component';
 
 const routes: Routes = [
-  { path: 'satellite', loadChildren: () => import('./Products/Satellite/module/satellite.module').then(m => m.SatelliteModule)},
-  { path: 'cart', component: CartComponent }
+  { path: 'cart', component: CartComponent },
+  { path: 'satellite', loadChildren: () => import('./Products/Satellite/module/satellite.module').then(s => s.SatelliteModule)},
+  { path: 'order', loadChildren: () => import('./Orders/module/order.module').then(o => o.OrderModule)},
+  { path: 'fuel', loadChildren: () => import('./Products/Fuel/module/fuel.module').then(f => f.FuelModule)},
+  { path: 'user', loadChildren: () => import('./Users/module/user.module').then(u => u.UserModule)}
 ];
 
 @NgModule({
