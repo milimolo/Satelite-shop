@@ -14,6 +14,9 @@ import {AppRoutingModule} from './app-routing.module';
 import { NavbarComponent } from './Navbar/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule} from '@angular/material/toolbar';
+import {NgxsModule} from '@ngxs/store';
+import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
+import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 
 
 @NgModule({
@@ -27,6 +30,9 @@ import { MatToolbarModule} from '@angular/material/toolbar';
     MatToolbarModule,
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    NgxsModule.forRoot(),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule
   ],
