@@ -24,7 +24,7 @@ export class SatelliteListComponent implements OnInit {
   }
 
   goToSatelliteDetail(id: string) {
-    this.router.navigate(['satelliteInfo/' + id]);
+    this.router.navigate(['satellite/info/' + id]);
   }
 
 
