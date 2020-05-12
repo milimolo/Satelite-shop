@@ -24,12 +24,17 @@ export class CartService {
         brand: productFromSatelliteService.brand
       };
       const totalPrice = this.product.price * amount;
-      const orderline: Orderline = {
+      let orderline: Orderline = {
         product: this.product,
         totalPrice,
         amount
       };
-      this.orderlines.push(orderline);
+      if (this.checkForProduct(this.product)) {
+        orderline = this.getOrderlineByProduct(this.product);
+        this.increaseProductAmount(orderline);
+      } else {
+        this.orderlines.push(orderline);
+      }
     });
   }
 
@@ -41,9 +46,49 @@ export class CartService {
     return this.orderlines;
   }
 
-  decreaseProduct(orderline: Orderline) {}
+  decreaseProductAmount(orderline: Orderline) {
+    for (let i = 0; i < this.orderlines.length; i++) {
+      if (this.orderlines[i].product.id === orderline.product.id) {
+        if (orderline.amount < 2) {
+          this.orderlines = this.orderlines.filter(ol => ol.product.id !== orderline.product.id);
+        } else {
+          this.orderlines[i].amount --;
+        }
+      }
+    }
+  }
+
+  increaseProductAmount(orderline: Orderline) {
+    for(let i = 0; i < this.orderlines.length; i++) {
+      if (this.orderlines[i].product.id === orderline.product.id) {
+        this.orderlines[i].amount++;
+      }
+    }
+  }
 
   clearCart() {
     this.orderlines = [];
   }
+
+  checkForProduct(product: Product): boolean {
+    for (const ol of this.orderlines) {
+      if (product.id === ol.product.id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  getOrderlineByProduct(product: Product): Orderline {
+    const tempOrderline = this.orderlines.filter(ol => ol.product.id === product.id);
+    return tempOrderline[0];
+  }
+
+  // updateOrderline(orderline: Orderline) {
+  //  for (let i = 0; i < this.orderlines.length; i++) {
+  //    if (this.orderlines[i].product.id === orderline.product.id) {
+  //      this.orderlines[i] = orderline;
+  //    }
+  //  }
+  // }
 }

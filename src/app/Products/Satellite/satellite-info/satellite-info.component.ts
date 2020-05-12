@@ -3,7 +3,8 @@ import {SatelliteService} from '../shared/satellite.service';
 import {Observable} from 'rxjs';
 import {Satellite} from '../shared/satellite';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CartService} from "../../../Cart/shared/cart.service";
+import {CartService} from '../../../Cart/shared/cart.service';
+import {Product} from '../../shared/product.model';
 
 @Component({
   selector: 'app-satelite-info',

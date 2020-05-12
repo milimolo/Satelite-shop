@@ -18,10 +18,17 @@ export class CartComponent implements OnInit {
 
   deleteOrderline(orderlineToDelete: Orderline) {
     this.cartService.deleteOrderline(orderlineToDelete);
+    this.orderline$ = this.cartService.getCart();
   }
 
-  decreaseProduct(orderline: Orderline) {
-    this.cartService.decreaseProduct(orderline);
+  decreaseProductAmount(orderline: Orderline) {
+    this.cartService.decreaseProductAmount(orderline);
+    this.orderline$ = this.cartService.getCart();
+  }
+
+  increaseProductAmount(orderline: Orderline) {
+    this.cartService.increaseProductAmount(orderline);
+    this.orderline$ = this.cartService.getCart();
   }
 
 }
