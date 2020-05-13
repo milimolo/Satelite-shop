@@ -13,7 +13,7 @@ import { NavbarComponent } from './Navbar/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule} from '@angular/material/toolbar';
 import { LoginComponent } from './login/login.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CartComponent } from './Cart/cart/cart.component';
 import {SatelliteListComponent} from './Products/Satellite/satellite-list/satellite-list.component';
 import {SatelliteInfoComponent} from './Products/Satellite/satellite-info/satellite-info.component';
@@ -22,8 +22,6 @@ import {SatelliteInfoComponent} from './Products/Satellite/satellite-info/satell
 @NgModule({
   declarations: [
     AppComponent,
-    SatelliteListComponent,
-    SatelliteInfoComponent,
     NavbarComponent,
     LoginComponent,
     CartComponent
@@ -34,7 +32,8 @@ import {SatelliteInfoComponent} from './Products/Satellite/satellite-info/satell
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AppRoutingModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

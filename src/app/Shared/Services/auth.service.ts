@@ -6,6 +6,7 @@ import {User} from '../../Users/shared/user.model';
 import {Observable, of} from 'rxjs';
 import {first, switchMap} from 'rxjs/operators';
 import {auth} from 'firebase';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,11 @@ import {auth} from 'firebase';
 export class AuthService {
   user$: Observable<User>;
   public loggedIn = false;
-
+  userData: Observable<firebase.User>;
   constructor(private afAuth: AngularFireAuth,
               private afs: AngularFirestore,
               private router: Router) {
+    this.userData = afAuth.authState;
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
@@ -32,6 +34,26 @@ export class AuthService {
     return this.loggedIn;
   }
 
+  SignUp(email: string, password: string) {
+    this.afAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then(res => {
+        console.log('You are now signed up', res);
+      })
+      .catch(error => {
+        console.log('Something went wrong', error);
+      });
+  }
+  SignInEmailAndPassword(email: string, password: string) {
+    this.afAuth
+      .signInWithEmailAndPassword(email, password)
+      .then(res => {
+        console.log('You are now logged in', res);
+      })
+      .catch(error => {
+        console.log('Something went wrong', error);
+      });
+  }
   async googleSignIn() {
       const provider = new auth.GoogleAuthProvider();
       const credential = await this.afAuth.signInWithPopup(provider);
