@@ -13,14 +13,18 @@ import { MatToolbarModule} from '@angular/material/toolbar';
 import {NgxsModule} from '@ngxs/store';
 import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
 import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
-import {ReactiveFormsModule} from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CartComponent } from './Cart/cart/cart.component';
+import {SatelliteListComponent} from './Products/Satellite/satellite-list/satellite-list.component';
+import {SatelliteInfoComponent} from './Products/Satellite/satellite-info/satellite-info.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    LoginComponent,
     CartComponent
   ],
   imports: [
@@ -32,7 +36,8 @@ import { CartComponent } from './Cart/cart/cart.component';
     NgxsLoggerPluginModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
