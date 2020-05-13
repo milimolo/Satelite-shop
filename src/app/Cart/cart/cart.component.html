@@ -1,0 +1,14 @@
+<div *ngIf="orderline$">
+  <ul *ngFor="let orderline of orderline$">
+    <li>
+      {{orderline.product.brand}} {{orderline.product.model}} || {{orderline.amount}} x {{orderline.product.price}}
+      = {{orderline.totalPrice}}
+      <button (click)="decreaseProductAmount(orderline)">-</button>
+      <span>{{orderline.amount}}</span>
+      <button (click)="increaseProductAmount(orderline)">+</button>
+      <button (click)="deleteOrderline(orderline)">
+        Delete product(s)
+      </button>
+    </li>
+  </ul>
+</div>
