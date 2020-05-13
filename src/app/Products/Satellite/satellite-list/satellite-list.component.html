@@ -4,10 +4,13 @@
     <div *ngFor="let satellite of satellites$ | async">
 
       <mat-grid-tile>
-        <mat-card class="mat-primary" (click)="goToSatelliteDetail(satellite.id)">
+        <mat-card class="mat-primary">
+          <div (click)="goToSatelliteDetail(satellite.id)">
           <mat-card-title class="mct">{{satellite.model}}</mat-card-title>
           <mat-card-subtitle class="mcs">{{satellite.brand}}</mat-card-subtitle>
           <mat-card-content> {{satellite.price}}$</mat-card-content>
+          </div>
+
           <button  mat-raised-button color="accent" (click)="addToCart(satellite.id)"><mat-icon>add_shopping_cart</mat-icon>Buy</button>
         </mat-card>
       </mat-grid-tile>
