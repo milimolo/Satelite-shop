@@ -15,8 +15,8 @@ import { MatToolbarModule} from '@angular/material/toolbar';
 import { LoginComponent } from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CartComponent } from './Cart/cart/cart.component';
-import {SatelliteListComponent} from './Products/Satellite/satellite-list/satellite-list.component';
-import {SatelliteInfoComponent} from './Products/Satellite/satellite-info/satellite-info.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -33,7 +33,9 @@ import {SatelliteInfoComponent} from './Products/Satellite/satellite-info/satell
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatCardModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
