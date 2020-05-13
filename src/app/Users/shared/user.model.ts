@@ -1,12 +1,12 @@
 import {Order} from '../../Orders/shared/order.model';
 
 export interface User {
-  id: string;
-  name: string;
+  uid: string;
+  displayName?: string;
   email: string;
-  password: string;
-  orders: Order[];
-  address: string;
-  city: string;
-  zipCode: number;
+  photoURL?: string;
+  orders?: Order[];
+  address?: string;
+  city?: string;
+  zipCode?: number;
 }

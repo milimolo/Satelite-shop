@@ -4,7 +4,7 @@ import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestor
 import {Router} from '@angular/router';
 import {User} from '../../Users/shared/user.model';
 import {Observable, of} from 'rxjs';
-import {switchMap} from 'rxjs/operators';
+import {first, switchMap} from 'rxjs/operators';
 import {auth} from 'firebase';
 
 @Injectable({
@@ -12,6 +12,7 @@ import {auth} from 'firebase';
 })
 export class AuthService {
   user$: Observable<User>;
+  public loggedIn = false;
 
   constructor(private afAuth: AngularFireAuth,
               private afs: AngularFirestore,
@@ -27,28 +28,31 @@ export class AuthService {
     );
   }
 
+  isLoggedIn() {
+    return this.loggedIn;
+  }
+
   async googleSignIn() {
-    const provider = new auth.GoogleAuthProvider();
-    const credential = await this.afAuth.signInWithPopup(provider);
+      const provider = new auth.GoogleAuthProvider();
+      const credential = await this.afAuth.signInWithPopup(provider);
+      this.updateUserData(credential.user);
+      this.loggedIn = true;
+  }
+  signOut() {
+    return this.afAuth.signOut().then(() => {
+      this.loggedIn = false;
+      this.router.navigate(['']);
+    });
   }
 
-  async signOut() {
-    await this.afAuth.signOut();
-    return this.router.navigate(['login']);
-  }
-
-  private updateUserData({ id, address, city, email, name, orders, password, zipCode }: User) {
+  private updateUserData({ uid, email, displayName, photoURL }: User) {
     // sets user data to firestone on login
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${id}`);
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${uid}`);
     const data = {
-      id,
-      address,
-      city,
+      uid,
       email,
-      name,
-      orders,
-      password,
-      zipCode
+      displayName,
+      photoURL
     };
 
     return userRef.set(data, {merge: true});

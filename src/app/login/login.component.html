@@ -1,7 +1,17 @@
-<div *ngIf="auth.user$ else login">
-  <button class="button" (click)="auth.googleSignIn()">Login of Google</button>
+<div *ngIf="auth.isLoggedIn() else login">
+  <button class="button" (click)="auth.signOut()">Logout</button>
 </div>
 <ng-template #login>
-  <button class="button" (click)="auth.signOut()">Logout of Google</button>
+  <button class="button" (click)="auth.googleSignIn()">Login with Google</button>
 </ng-template>
+
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+</head>
+<div *ngIf="auth.user$ | async as user;">
+  <img src="{{user.photoURL}}" width="100" height="100">
+  <h3>Name: {{user.displayName}}</h3>
+  <h3>Email: {{user.email}}</h3>
+  <button type="edit"><i class="material-icons">settings</i></button>
+</div>
 <router-outlet></router-outlet>
