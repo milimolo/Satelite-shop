@@ -15,12 +15,14 @@ export class SatelliteInfoComponent implements OnInit {
 
   satellite$: Observable<Satellite>;
   id: string;
+  amount: number;
 
   constructor(private satelliteService: SatelliteService,
               private route: ActivatedRoute,
               private cartService: CartService) { }
 
   ngOnInit(): void {
+    this.amount = 1;
     this.getSattelite();
   }
 
@@ -30,7 +32,15 @@ export class SatelliteInfoComponent implements OnInit {
   }
 
   addToCart() {
-    this.cartService.addToCart(this.id, 1);
+    this.cartService.addToCart(this.id, this.amount);
+  }
+
+  increaseAmount() {
+    this.amount++;
+  }
+
+  decreaseAmount() {
+    this.amount--;
   }
 
 }

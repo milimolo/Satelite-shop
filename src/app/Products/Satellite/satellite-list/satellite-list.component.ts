@@ -28,4 +28,7 @@ export class SatelliteListComponent implements OnInit {
   }
 
 
+  updateSatellite(id: string) {
+    this.router.navigate(['satellite/update/' + id]);
+  }
 }

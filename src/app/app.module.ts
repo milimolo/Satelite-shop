@@ -20,6 +20,8 @@ import {SatelliteModule} from './Products/Satellite/module/satellite.module';
 import {CartState} from './Cart/cart/cart.state';
 import {NgxsStoragePluginModule} from '@ngxs/storage-plugin';
 import {C} from '@angular/cdk/keycodes';
+import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import {C} from '@angular/cdk/keycodes';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    SatelliteModule
+    SatelliteModule,
+    MatCardModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
