@@ -17,6 +17,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CartComponent } from './Cart/cart/cart.component';
 import {SatelliteListComponent} from './Products/Satellite/satellite-list/satellite-list.component';
 import {SatelliteInfoComponent} from './Products/Satellite/satellite-info/satellite-info.component';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+
 
 
 @NgModule({
@@ -33,7 +36,9 @@ import {SatelliteInfoComponent} from './Products/Satellite/satellite-info/satell
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

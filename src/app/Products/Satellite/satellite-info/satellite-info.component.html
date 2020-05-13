@@ -1,5 +1,5 @@
 <h1 xmlns="http://www.w3.org/1999/html">Satellite details</h1>
-<div *ngIf="(satellite$ | async)">
+<div *ngIf="(satellite$ | async)" fxLayoutAlign.xs="30">
   <div>
     <h3>Overview</h3>
     <h4>Model: {{(satellite$ | async)?.model}}</h4>
@@ -12,12 +12,13 @@
     <h4>Weight: {{(satellite$ | async)?.weight}}</h4>
     <h4>Volume: {{(satellite$ | async)?.volume}}</h4>
     <h4>Maximum range: {{(satellite$ | async)?.maxRange}}</h4>
-    <button (click)="decreaseAmount()">-</button>
+    <button  color="primary" mat-mini-fab (click)="decreaseAmount()"><mat-icon>remove</mat-icon></button>
     <span>{{amount}}</span>
-    <button (click)="increaseAmount()">+</button>
-    <button (click)="addToCart()"> Add to cart</button>
+    <button  color="primary" mat-mini-fab (click)="increaseAmount()"><mat-icon>add</mat-icon></button>
+    <button color="primary" mat-fab (click)="addToCart()"><mat-icon>add_shopping_cart</mat-icon>Buy</button>
   </div>
 </div>
 <div *ngIf="!(satellite$ | async)">
   <h4>loading...</h4>
 </div>
+

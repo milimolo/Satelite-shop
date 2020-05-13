@@ -3,6 +3,8 @@ import {Observable} from 'rxjs';
 import {Satellite} from '../shared/satellite';
 import {SatelliteService} from '../shared/satellite.service';
 import {Router} from '@angular/router';
+import {CartService} from '../../../Cart/shared/cart.service';
+import {Product} from '../../shared/product.model';
 
 @Component({
   selector: 'app-satelite-list',
@@ -13,7 +15,8 @@ export class SatelliteListComponent implements OnInit {
 
   satellites$: Observable<Satellite[]>;
   constructor(private satelliteService: SatelliteService,
-              private router: Router) { }
+              private router: Router,
+              private cartService: CartService) { }
 
   ngOnInit(): void {
     this.getAllSatellites();
@@ -25,6 +28,10 @@ export class SatelliteListComponent implements OnInit {
 
   goToSatelliteDetail(id: string) {
     this.router.navigate(['satellite/info/' + id]);
+  }
+
+  addToCart(id: string) {
+    this.cartService.addToCart(id, 1);
   }
 
 

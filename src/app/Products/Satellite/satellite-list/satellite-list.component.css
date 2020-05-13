@@ -1,0 +1,20 @@
+.mat-primary {
+   background: green;
+   width: 300px;
+  color: white;
+  cursor: pointer;
+ }
+
+.mcs{
+  font-family: "arial", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  color: white;
+}
+
+.mct{
+  font-family: "arial", sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+  color: white;
+}
