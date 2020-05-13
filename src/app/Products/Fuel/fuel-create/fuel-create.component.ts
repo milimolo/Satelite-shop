@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FuelService} from '../shared/fuel.service';
-import {FormBuilder} from "@angular/forms";
-import {Location} from "@angular/common";
+import {FormBuilder} from '@angular/forms';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-fuel-create',
@@ -10,7 +10,7 @@ import {Location} from "@angular/common";
 })
 export class FuelCreateComponent implements OnInit {
 
-  private createForm = this.fb.group({
+  createForm = this.fb.group({
     model: [''],
     brand: [''],
     price: [''],
@@ -25,7 +25,11 @@ export class FuelCreateComponent implements OnInit {
   }
 
   onSubmit() {
-
+    const fuel = this.createForm.value;
+    this.fuelService.createFuel(fuel)
+      .subscribe(() => {
+        this.location.back();
+      });
   }
 
 }

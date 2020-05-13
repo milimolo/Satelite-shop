@@ -13,11 +13,11 @@ export class FuelService {
   private fuelCollection: AngularFirestoreCollection<Fuel>;
 
   constructor(private afs: AngularFirestore) {
-    this.fuelCollection = afs.collection('Fuels');
+    this.fuelCollection = afs.collection('Fuel');
   }
 
   getFuel(id: string): Observable<Fuel> {
-    this.fuelDoc = this.afs.doc<Fuel>('Fuels/' + id);
+    this.fuelDoc = this.afs.doc<Fuel>('Fuel/' + id);
     return this.fuelDoc.snapshotChanges().pipe(
       map( f => {
         const fuel = f.payload.data() as Fuel;
@@ -38,5 +38,27 @@ export class FuelService {
         });
       })
     ));
+  }
+
+  createFuel(fuel: Fuel): Observable<any> {
+    return from(this.afs.collection('Fuel').add({
+      model: fuel.model,
+      brand: fuel.brand,
+      price: fuel.price,
+      typeOfPurchase: fuel.typeOfPurchase
+    }));
+  }
+
+  updateFuel(fuel: Fuel): Observable<any> {
+    return from(this.fuelCollection.doc(fuel.id).update({
+      model: fuel.model,
+      brand: fuel.brand,
+      price: fuel.price,
+      typeOfPurchase: fuel.typeOfPurchase
+    }));
+  }
+
+  deleteFuel(id: string): Observable<any> {
+    return from(this.fuelCollection.doc(id).delete());
   }
 }

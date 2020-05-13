@@ -1,3 +1,9 @@
-.product-card {
+.satellite-card {
   max-width: 500px;
+}
+.fuel-card {
+  max-width: 500px;
+}
+.product-grid {
+  margin-top: 8px;
 }

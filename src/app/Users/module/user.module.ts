@@ -7,6 +7,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatGridListModule} from "@angular/material/grid-list";
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatCardModule,
     MatListModule,
     MatButtonModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatGridListModule
   ]
 })
 export class UserModule { }

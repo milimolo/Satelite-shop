@@ -1,38 +1,70 @@
 <h2>Welcome Admin!</h2>
-<div>
-  <mat-card class="product-card">
-    <mat-card-header>
-      <mat-card-title>
-        <h2>Satellites</h2>
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-accordion>
-        <div *ngFor="let satellite of satellites$ | async">
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                {{satellite.model}} | {{satellite.brand}}
-              </mat-panel-title>
-              <mat-panel-description>
-                Click for details
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <div>
-              <h4>ID: {{satellite.id}}</h4>
-              <h4>Weight: {{satellite.weight}}kg</h4>
-              <h4>Volume: {{satellite.volume}}m</h4>
-              <h4>Max range: {{satellite.maxRange}}km</h4>
-              <h4>Price: {{satellite.price}}kr</h4>
-              <button routerLink="/satellite/update/{{satellite.id}}" mat-raised-button color="accent">Update</button>
-              <button (click)="deleteSatellite(satellite.id)" mat-raised-button color="warn">Delete</button>
-            </div>
-          </mat-expansion-panel>
-        </div>
-      </mat-accordion>
-    </mat-card-content>
-    <mat-card-actions>
-      <button routerLink="/satellite/create" mat-raised-button color="primary">Create Satellite</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+  <div>
+    <mat-card class="satellite-card">
+      <mat-card-header>
+        <mat-card-title>
+          <h2>Satellites</h2>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-accordion>
+          <div *ngFor="let satellite of satellites$ | async">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{satellite.model}} | {{satellite.brand}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  Click for details
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div>
+                <h4>ID: {{satellite.id}}</h4>
+                <h4>Weight: {{satellite.weight}}kg</h4>
+                <h4>Volume: {{satellite.volume}}m</h4>
+                <h4>Max range: {{satellite.maxRange}}km</h4>
+                <h4>Price: {{satellite.price}}kr</h4>
+                <button routerLink="/satellite/update/{{satellite.id}}" mat-raised-button color="accent">Update</button>
+                <button (click)="deleteSatellite(satellite.id)" mat-raised-button color="warn">Delete</button>
+              </div>
+            </mat-expansion-panel>
+          </div>
+        </mat-accordion>
+      </mat-card-content>
+      <mat-card-actions>
+        <button routerLink="/satellite/create" mat-raised-button color="primary">Create Satellite</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="fuel-card">
+      <mat-card-header>
+        <mat-card-title>
+          <h2>Fuel</h2>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-accordion>
+          <div *ngFor="let fuel of fuels$ | async">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{fuel.model}} | {{fuel.brand}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  Click for details
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div>
+                <h4>ID: {{fuel.id}}</h4>
+                <h4>Type of Purchase: {{fuel.typeOfPurchase}}</h4>
+                <button routerLink="/fuel/update/{{fuel.id}}" mat-raised-button color="accent">Update</button>
+                <button (click)="deleteFuel(fuel.id)" mat-raised-button color="warn">Delete</button>
+              </div>
+            </mat-expansion-panel>
+          </div>
+        </mat-accordion>
+      </mat-card-content>
+      <mat-card-actions>
+        <button routerLink="/fuel/create" mat-raised-button color="primary">Create Fuel</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
