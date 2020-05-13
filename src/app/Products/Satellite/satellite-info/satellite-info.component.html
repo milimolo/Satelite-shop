@@ -12,6 +12,9 @@
     <h4>Weight: {{(satellite$ | async)?.weight}}</h4>
     <h4>Volume: {{(satellite$ | async)?.volume}}</h4>
     <h4>Maximum range: {{(satellite$ | async)?.maxRange}}</h4>
+    <button (click)="decreaseAmount()">-</button>
+    <span>{{amount}}</span>
+    <button (click)="increaseAmount()">+</button>
     <button (click)="addToCart()"> Add to cart</button>
   </div>
 </div>
