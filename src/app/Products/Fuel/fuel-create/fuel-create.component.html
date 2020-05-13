@@ -1,0 +1,32 @@
+<h2>Create a fuel product</h2>
+<div>
+  <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+    <div>
+      <mat-form-field>
+        <mat-label>Model</mat-label>
+        <input matInput type="text" formControlName="model" placeholder="Ex. New Green Oil 123ea" required/>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Brand</mat-label>
+        <input matInput type="text" formControlName="brand" placeholder="Ex. OilCompany" required/>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Price</mat-label>
+        <input matInput type="number" formControlName="price" placeholder="200" required min="0"/>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Type of Purchase</mat-label>
+        <input matInput type="text" formControlName="typeOfPurchase" placeholder="5L Barrel" required/>
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-raised-button color="primary">CREATE</button>
+    </div>
+  </form>
+</div>

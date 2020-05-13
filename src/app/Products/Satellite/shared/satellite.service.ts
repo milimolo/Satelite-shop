@@ -38,4 +38,30 @@ export class SatelliteService {
       })
     );
   }
+
+  updateSatellite(satellite: Satellite): Observable<any> {
+    return from(this.satelliteCollection.doc(satellite.id).update({
+      model: satellite.model,
+      brand: satellite.brand,
+      maxRange: satellite.maxRange,
+      volume: satellite.volume,
+      weight: satellite.weight,
+      price: satellite.price
+      }));
+  }
+
+  createSatellite(satellite: Satellite): Observable<any> {
+    return from(this.afs.collection('Satellites').add({
+      model: satellite.model,
+      brand: satellite.brand,
+      maxRange: satellite.maxRange,
+      volume: satellite.volume,
+      weight: satellite.weight,
+      price: satellite.price
+    }));
+  }
+
+  deleteSatellite(id: string): Observable<any> {
+    return from(this.satelliteCollection.doc(id).delete());
+  }
 }
