@@ -14,12 +14,14 @@ import {NgxsModule} from '@ngxs/store';
 import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
 import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 import {ReactiveFormsModule} from '@angular/forms';
+import { CartComponent } from './Cart/cart/cart.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    CartComponent
   ],
   imports: [
     MatToolbarModule,
