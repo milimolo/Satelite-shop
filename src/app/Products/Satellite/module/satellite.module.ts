@@ -8,11 +8,14 @@ import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
-  declarations: [SatelliteInfoComponent, SatelliteListComponent],
-  imports: [
-    CommonModule,
-    SatelliteRoutingModule,
-    ReactiveFormsModule
-  ]
+    declarations: [SatelliteInfoComponent, SatelliteListComponent],
+    exports: [
+        SatelliteListComponent
+    ],
+    imports: [
+        CommonModule,
+        SatelliteRoutingModule,
+        ReactiveFormsModule
+    ]
 })
 export class SatelliteModule { }

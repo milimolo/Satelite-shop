@@ -1,7 +1,9 @@
-export class GetOrderline {
-  static readonly type = '[Cart] GetOrderLine';
-}
+import {Orderline} from '../../Orders/shared/orderline.model';
+import {Product} from '../../Products/shared/product.model';
 
-export class DeleteOrderline {
-  static readonly type = '[Cart] DeleteOrderline';
+export class AddToCart {
+  static readonly type = '[Cart] GetOrderLine';
+
+  constructor(public product: Product, public amount: number, public totalPrice: number) {
+  }
 }
