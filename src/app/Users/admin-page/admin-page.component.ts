@@ -13,28 +13,68 @@ import {PriceFormatterService} from '../../Shared/Services/price-formatter.servi
 })
 export class AdminPageComponent implements OnInit {
 
-  satellites$: Observable<Satellite[]>;
+  satellites: Satellite[];
   fuels$: Observable<Fuel[]>;
+  hasNextSatellite: boolean;
+  hasPrevSatellite: boolean;
 
   constructor(private satelliteService: SatelliteService,
               private fuelService: FuelService,
               private priceFormatterService: PriceFormatterService) { }
 
   ngOnInit(): void {
-    this.getSatellites();
+    this.getSatellites()
     this.getFuels();
   }
 
   getSatellites() {
-    this.satellites$ = this.satelliteService.getFirstPage();
+    this.satelliteService.getFirstPage()
+      .subscribe(list => {
+        this.satellites = list;
+        this.checkForNextSatellite();
+        this.checkForPrevSatellite();
+      });
   }
 
   getNextSatellites() {
-    this.satellites$ = this.satelliteService.nextPage();
+    this.satelliteService.nextPage()
+      .subscribe(list => {
+        this.satellites = list;
+        this.checkForNextSatellite();
+        this.checkForPrevSatellite();
+      });
   }
 
   getPrevSatellites() {
-    this.satellites$ = this.satelliteService.prevPage();
+    this.satelliteService.prevPage()
+      .subscribe(list => {
+        this.satellites = list;
+        this.checkForPrevSatellite();
+        this.checkForNextSatellite();
+      });
+  }
+
+
+  private checkForNextSatellite() {
+    this.satelliteService.hasNextPage()
+      .subscribe(hasNext => {
+        if (hasNext !== undefined) {
+          this.hasNextSatellite = hasNext;
+        } else {
+          this.hasNextSatellite = false;
+        }
+      });
+  }
+
+  private checkForPrevSatellite() {
+    this.satelliteService.hasPrevPage()
+      .subscribe(hasPrev => {
+        if (hasPrev !== undefined) {
+          this.hasPrevSatellite = hasPrev;
+        } else {
+          this.hasPrevSatellite = false;
+        }
+      });
   }
 
   deleteSatellite(id: string) {

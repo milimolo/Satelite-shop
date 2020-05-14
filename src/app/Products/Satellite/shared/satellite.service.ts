@@ -28,16 +28,16 @@ export class SatelliteService {
         });
       })
     ));
-
-
   }
 
   getFirstPage(): Observable<Satellite[]> {
     return this.afs.collection('Satellites', ref => ref.orderBy('model').limit(5))
       .snapshotChanges().pipe(
         map(actions => {
-          this.firstDoc = actions[0].payload.doc;
-          this.lastDoc = actions[actions.length - 1].payload.doc;
+          if (actions.length > 0) {
+            this.firstDoc = actions[0].payload.doc;
+            this.lastDoc = actions[actions.length - 1].payload.doc;
+          }
           return actions.map(s => {
             const satellite = s.payload.doc.data() as Satellite;
             const id = s.payload.doc.id;
@@ -52,13 +52,15 @@ export class SatelliteService {
     return this.afs.collection('Satellites', ref => ref.orderBy('model').startAfter(this.lastDoc).limit(5))
       .snapshotChanges().pipe(
         map(actions => {
-          this.firstDoc = actions[0].payload.doc;
-          this.lastDoc = actions[actions.length - 1].payload.doc;
+          if (actions.length > 0) {
+            this.firstDoc = actions[0].payload.doc;
+            this.lastDoc = actions[actions.length - 1].payload.doc;
+          }
           return actions.map(s => {
-            const satellitte = s.payload.doc.data() as Satellite;
+            const satellite = s.payload.doc.data() as Satellite;
             const id = s.payload.doc.id;
-            satellitte.id = id;
-            return satellitte;
+            satellite.id = id;
+            return satellite;
           });
         })
       );
@@ -68,16 +70,48 @@ export class SatelliteService {
     return this.afs.collection('Satellites', ref => ref.orderBy('model').endBefore(this.firstDoc).limit(5))
       .snapshotChanges().pipe(
         map(actions => {
-          this.firstDoc = actions[0].payload.doc;
-          this.lastDoc = actions[actions.length - 1].payload.doc;
+          if (actions.length > 0) {
+            this.firstDoc = actions[0].payload.doc;
+            this.lastDoc = actions[actions.length - 1].payload.doc;
+          }
           return actions.map(s => {
-            const satellitte = s.payload.doc.data() as Satellite;
+            const satellite = s.payload.doc.data() as Satellite;
             const id = s.payload.doc.id;
-            satellitte.id = id;
-            return satellitte;
+            satellite.id = id;
+            return satellite;
           });
         })
       );
+  }
+
+  hasNextPage(): Observable<boolean> {
+    if (this.lastDoc !== undefined) {
+      return this.afs.collection('Satellites', ref => ref.orderBy('model').startAfter(this.lastDoc).limit(1))
+        .snapshotChanges().pipe(
+          map(actions => {
+            if (actions.length > 0) {
+              return true;
+            } else {
+              return false;
+            }
+          })
+        );
+    }
+  }
+
+  hasPrevPage(): Observable<boolean> {
+    if (this.firstDoc !== undefined) {
+      return this.afs.collection('Satellites', ref => ref.orderBy('model').endBefore(this.firstDoc).limit(1))
+        .snapshotChanges().pipe(
+          map(actions => {
+            if (actions.length > 0) {
+              return true;
+            } else {
+              return false;
+            }
+          })
+        );
+    }
   }
 
   getSatellite(id: string): Observable<Satellite> {

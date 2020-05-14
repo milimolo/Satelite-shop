@@ -8,33 +8,35 @@
       </mat-card-header>
       <mat-card-content>
         <mat-accordion>
-          <div *ngFor="let satellite of satellites$ | async">
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  {{satellite.model}} | {{satellite.brand}}
-                </mat-panel-title>
-                <mat-panel-description>
-                  Click for details
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-              <div>
-                <h4>ID: {{satellite.id}}</h4>
-                <h4>Weight: {{satellite.weight}}kg</h4>
-                <h4>Volume: {{satellite.volume}}m</h4>
-                <h4>Max range: {{satellite.maxRange}}km</h4>
-                <h4>Price: {{priceFormat(satellite.price)}}</h4>
-                <button routerLink="/satellite/update/{{satellite.id}}" mat-raised-button color="accent">Update</button>
-                <button (click)="deleteSatellite(satellite.id)" mat-raised-button color="warn">Delete</button>
-              </div>
-            </mat-expansion-panel>
+          <div *ngIf="satellites">
+            <div *ngFor="let satellite of satellites">
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    {{satellite.model}} | {{satellite.brand}}
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Click for details
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div>
+                  <h4>ID: {{satellite.id}}</h4>
+                  <h4>Weight: {{satellite.weight}}kg</h4>
+                  <h4>Volume: {{satellite.volume}}m</h4>
+                  <h4>Max range: {{satellite.maxRange}}km</h4>
+                  <h4>Price: {{priceFormat(satellite.price)}}</h4>
+                  <button routerLink="/satellite/update/{{satellite.id}}" mat-raised-button color="accent">Update</button>
+                  <button (click)="deleteSatellite(satellite.id)" mat-raised-button color="warn">Delete</button>
+                </div>
+              </mat-expansion-panel>
+            </div>
           </div>
         </mat-accordion>
       </mat-card-content>
       <mat-card-actions>
         <button routerLink="/satellite/create" mat-raised-button color="primary">Create Satellite</button>
-        <button (click)="getPrevSatellites()" mat-stroked-button color="primary">Prev Page</button>
-        <button (click)="getNextSatellites()" mat-stroked-button color="primary">Next Page</button>
+        <button (click)="getPrevSatellites()" mat-stroked-button color="primary" [disabled]="!hasPrevSatellite">Prev Page</button>
+        <button (click)="getNextSatellites()" mat-stroked-button color="primary" [disabled]="!hasNextSatellite">Next Page</button>
       </mat-card-actions>
     </mat-card>
     <mat-card class="fuel-card">
