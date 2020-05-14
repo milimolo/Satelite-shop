@@ -1,12 +1,17 @@
-<h1>Satellites</h1>
-<div *ngFor="let satellite of satellites$ | async">
-  <div>
-    <h4>----------------------</h4>
-    <h4>Model & Brand: {{satellite.model}} | {{satellite.brand}}</h4>
-    <h4>Price: {{satellite.price}}</h4>
-    <button (click)="goToSatelliteDetail(satellite.id)">Go to details</button>
-  </div>
-</div>
+
 <div>
-  <h4>----------------------</h4>
+  <mat-grid-list cols="5" rowHeight="400px">
+    <div *ngFor="let satellite of satellites$ | async">
+
+      <mat-grid-tile>
+        <mat-card class="mat-primary" (click)="goToSatelliteDetail(satellite.id)">
+          <mat-card-title class="mct">{{satellite.model}}</mat-card-title>
+          <mat-card-subtitle class="mcs">{{satellite.brand}}</mat-card-subtitle>
+          <mat-card-content> {{satellite.price}}$</mat-card-content>
+          <button  mat-raised-button color="accent" (click)="addToCart(satellite.id)"><mat-icon>add_shopping_cart</mat-icon>Buy</button>
+        </mat-card>
+      </mat-grid-tile>
+
+    </div>
+  </mat-grid-list>
 </div>

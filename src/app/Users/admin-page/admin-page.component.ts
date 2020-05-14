@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {Satellite} from '../../Products/Satellite/shared/satellite';
 import {Fuel} from "../../Products/Fuel/shared/fuel.model";
 import {FuelService} from "../../Products/Fuel/shared/fuel.service";
+import {PriceFormatterService} from "../../Shared/Services/price-formatter.service";
 
 @Component({
   selector: 'app-admin-page',
@@ -15,7 +16,8 @@ export class AdminPageComponent implements OnInit {
   satellites$: Observable<Satellite[]>;
   fuels$: Observable<Fuel[]>;
   constructor(private satelliteService: SatelliteService,
-              private fuelService: FuelService) { }
+              private fuelService: FuelService,
+              private priceFormatterService: PriceFormatterService) { }
 
   ngOnInit(): void {
     this.getSatellites();
@@ -42,6 +44,10 @@ export class AdminPageComponent implements OnInit {
       .subscribe(() => {
         subscription.unsubscribe();
       });
+  }
+
+  priceFormat(price: number): string {
+    return this.priceFormatterService.formatPrice(price);
   }
 
 }

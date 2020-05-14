@@ -23,7 +23,7 @@
                 <h4>Weight: {{satellite.weight}}kg</h4>
                 <h4>Volume: {{satellite.volume}}m</h4>
                 <h4>Max range: {{satellite.maxRange}}km</h4>
-                <h4>Price: {{satellite.price}}kr</h4>
+                <h4>Price: {{priceFormat(satellite.price)}}</h4>
                 <button routerLink="/satellite/update/{{satellite.id}}" mat-raised-button color="accent">Update</button>
                 <button (click)="deleteSatellite(satellite.id)" mat-raised-button color="warn">Delete</button>
               </div>
@@ -56,6 +56,7 @@
               <div>
                 <h4>ID: {{fuel.id}}</h4>
                 <h4>Type of Purchase: {{fuel.typeOfPurchase}}</h4>
+                <h4>Price: {{priceFormat(fuel.price)}}</h4>
                 <button routerLink="/fuel/update/{{fuel.id}}" mat-raised-button color="accent">Update</button>
                 <button (click)="deleteFuel(fuel.id)" mat-raised-button color="warn">Delete</button>
               </div>

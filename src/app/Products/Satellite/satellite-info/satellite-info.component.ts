@@ -8,6 +8,7 @@ import {Product} from '../../shared/product.model';
 import {CartState} from '../../../Cart/cart/cart.state';
 import {Select, Store} from '@ngxs/store';
 import {AddToCart} from '../../../Cart/cart/cart.action';
+import { PriceFormatterService } from 'src/app/Shared/Services/price-formatter.service';
 
 @Component({
   selector: 'app-satelite-info',
@@ -25,8 +26,8 @@ export class SatelliteInfoComponent implements OnInit {
               private route: ActivatedRoute,
               private cartService: CartService,
               private cartState: CartState,
-              private store: Store) {
-  }
+              private store: Store,
+              private priceFormatterService: PriceFormatterService) { }
 
   ngOnInit(): void {
     this.amount = 1;
@@ -57,4 +58,7 @@ export class SatelliteInfoComponent implements OnInit {
     this.amount--;
   }
 
+  priceFormat(price: number): string {
+    return this.priceFormatterService.formatPrice(price);
+  }
 }
