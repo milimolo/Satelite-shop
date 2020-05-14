@@ -25,7 +25,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   getSatellites() {
-    this.satellites$ = this.satelliteService.getAllSatellites();
+    this.satellites$ = this.satelliteService.getFirstPage();
   }
 
   deleteSatellite(id: string) {

@@ -26,6 +26,22 @@ export class SatelliteService {
         });
       })
     ));
+
+
+  }
+
+  getFirstPage(): Observable<Satellite[]> {
+    return this.afs.collection('Satellites', ref => ref.limit(5))
+      .snapshotChanges().pipe(
+        map(actions => {
+          return actions.map(s => {
+            const satellite = s.payload.doc.data() as Satellite;
+            const id = s.payload.doc.id;
+            satellite.id = id;
+            return satellite;
+          });
+        })
+      );
   }
 
   getSatellite(id: string): Observable<Satellite> {
