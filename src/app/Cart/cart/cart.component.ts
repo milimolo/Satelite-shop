@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Orderline} from '../../Orders/shared/orderline.model';
 import {CartService} from '../shared/cart.service';
+import {Action, Select, StateContext, Store} from '@ngxs/store';
+import {CartState, CartStateModel} from './cart.state';
+import {Observable} from 'rxjs';
+import {AddToCart, DecreaseProductAmount, IncreaseProductAmount, RemoveOrderline} from './cart.action';
 
 @Component({
   selector: 'app-cart',
@@ -9,26 +13,26 @@ import {CartService} from '../shared/cart.service';
 })
 export class CartComponent implements OnInit {
 
-  orderline$: Orderline[];
-  constructor(private cartService: CartService) { }
+  @Select(CartState.getCart)
+  getCart: Observable<Orderline[]>;
+
+  constructor(private cartService: CartService, private store: Store) {
+  }
 
   ngOnInit(): void {
-    this.orderline$ = this.cartService.getCart();
   }
 
   deleteOrderline(orderlineToDelete: Orderline) {
-    this.cartService.deleteOrderline(orderlineToDelete);
-    this.orderline$ = this.cartService.getCart();
+    this.store.dispatch((new RemoveOrderline(orderlineToDelete.product)));
   }
 
   decreaseProductAmount(orderline: Orderline) {
-    this.cartService.decreaseProductAmount(orderline);
-    this.orderline$ = this.cartService.getCart();
+    this.store.dispatch(new DecreaseProductAmount(orderline.product, orderline.amount, orderline.totalPrice));
   }
 
   increaseProductAmount(orderline: Orderline) {
-    this.cartService.increaseProductAmount(orderline);
-    this.orderline$ = this.cartService.getCart();
+    const amount = 1;
+    this.store.dispatch(new IncreaseProductAmount(orderline.product, amount, orderline.totalPrice));
   }
 
 }
