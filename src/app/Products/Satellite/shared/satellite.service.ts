@@ -11,6 +11,8 @@ export class SatelliteService {
 
   private satelliteDoc: AngularFirestoreDocument<Satellite>;
   private satelliteCollection: AngularFirestoreCollection<Satellite>;
+  private firstDoc: any;
+  private lastDoc: any;
   constructor(private afs: AngularFirestore) {
     this.satelliteCollection = afs.collection('Satellites');
   }
@@ -31,14 +33,48 @@ export class SatelliteService {
   }
 
   getFirstPage(): Observable<Satellite[]> {
-    return this.afs.collection('Satellites', ref => ref.limit(5))
+    return this.afs.collection('Satellites', ref => ref.orderBy('model').limit(5))
       .snapshotChanges().pipe(
         map(actions => {
+          this.firstDoc = actions[0].payload.doc;
+          this.lastDoc = actions[actions.length - 1].payload.doc;
           return actions.map(s => {
             const satellite = s.payload.doc.data() as Satellite;
             const id = s.payload.doc.id;
             satellite.id = id;
             return satellite;
+          });
+        })
+      );
+  }
+
+  nextPage(): Observable<Satellite[]> {
+    return this.afs.collection('Satellites', ref => ref.orderBy('model').startAfter(this.lastDoc).limit(5))
+      .snapshotChanges().pipe(
+        map(actions => {
+          this.firstDoc = actions[0].payload.doc;
+          this.lastDoc = actions[actions.length - 1].payload.doc;
+          return actions.map(s => {
+            const satellitte = s.payload.doc.data() as Satellite;
+            const id = s.payload.doc.id;
+            satellitte.id = id;
+            return satellitte;
+          });
+        })
+      );
+  }
+
+  prevPage(): Observable<Satellite[]> {
+    return this.afs.collection('Satellites', ref => ref.orderBy('model').endBefore(this.firstDoc).limit(5))
+      .snapshotChanges().pipe(
+        map(actions => {
+          this.firstDoc = actions[0].payload.doc;
+          this.lastDoc = actions[actions.length - 1].payload.doc;
+          return actions.map(s => {
+            const satellitte = s.payload.doc.data() as Satellite;
+            const id = s.payload.doc.id;
+            satellitte.id = id;
+            return satellitte;
           });
         })
       );

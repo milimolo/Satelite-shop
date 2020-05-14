@@ -33,6 +33,8 @@
       </mat-card-content>
       <mat-card-actions>
         <button routerLink="/satellite/create" mat-raised-button color="primary">Create Satellite</button>
+        <button (click)="getPrevSatellites()" mat-stroked-button color="primary">Prev Page</button>
+        <button (click)="getNextSatellites()" mat-stroked-button color="primary">Next Page</button>
       </mat-card-actions>
     </mat-card>
     <mat-card class="fuel-card">

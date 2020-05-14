@@ -5,7 +5,6 @@ import {SatelliteInfoComponent} from '../satellite-info/satellite-info.component
 import {SatelliteListComponent} from '../satellite-list/satellite-list.component';
 import {SatelliteUpdateComponent} from '../satellite-update/satellite-update.component';
 import {ReactiveFormsModule} from '@angular/forms';
-
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {FlexModule} from '@angular/flex-layout';
