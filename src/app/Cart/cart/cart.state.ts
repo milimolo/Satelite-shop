@@ -3,7 +3,6 @@ import {Injectable} from '@angular/core';
 import {Orderline} from '../../Orders/shared/orderline.model';
 import {AddToCart, DecreaseProductAmount, IncreaseProductAmount, RemoveOrderline} from './cart.action';
 import {Product} from '../../Products/shared/product.model';
-import {OrderModule} from '../../Orders/module/order.module';
 
 export class CartStateModel {
   orderlines: Orderline[];
@@ -35,7 +34,7 @@ export class CartState {
   addToCart(ctx: StateContext<CartStateModel>, action: AddToCart) {
     const state = ctx.getState();
     if (this.checkForProduct(action.product, ctx) && this.checkForOrderLine(action, ctx)) {
-      this.increaseProductAmount(action, ctx);
+      ctx.dispatch(new IncreaseProductAmount(action.product, action.amount, action.totalPrice));
     } else {
       const orderlinesNew = [...state.orderlines];
       orderlinesNew.push({
@@ -48,19 +47,42 @@ export class CartState {
         orderlines: orderlinesNew
       });
     }
-
   }
 
   @Action(DecreaseProductAmount)
   DecreaseProductAmount(ctx: StateContext<CartStateModel>, action: DecreaseProductAmount) {
-    this.decreaseProductAmount(action, ctx);
+    const state = ctx.getState();
+    let orderlinesNew = [...state.orderlines];
 
+    for (let i = 0; i < orderlinesNew.length; i++) {
+      if (orderlinesNew[i].product.id === action.product.id) {
+        if (action.amount < 2) {
+          orderlinesNew = orderlinesNew.filter(ol => ol.product.id !== action.product.id);
+        } else {
+          orderlinesNew[i].amount--;
+        }
+      }
+    }
+    ctx.setState({
+      ...state,
+      orderlines: orderlinesNew
+    });
   }
-
 
   @Action(IncreaseProductAmount)
   IncreaseProductAmount(ctx: StateContext<CartStateModel>, action: IncreaseProductAmount) {
-    this.increaseProductAmount(action, ctx);
+    const state = ctx.getState();
+    const orderlinesNew = [...state.orderlines];
+
+    for (let i = 0; i < orderlinesNew.length; i++) {
+      if (orderlinesNew[i].product.id === action.product.id) {
+        orderlinesNew[i].amount = orderlinesNew[i].amount + action.amount;
+      }
+    }
+    ctx.setState({
+      ...state,
+      orderlines: orderlinesNew
+    });
   }
 
   @Action(RemoveOrderline)
@@ -85,41 +107,6 @@ export class CartState {
       }
     }
     return false;
-  }
-
-
-  decreaseProductAmount(orderline: Orderline, ctx: StateContext<CartStateModel>) {
-    const state = ctx.getState();
-    let orderlinesNew = [...state.orderlines];
-
-    for (let i = 0; i < orderlinesNew.length; i++) {
-      if (orderlinesNew[i].product.id === orderline.product.id) {
-        if (orderline.amount < 2) {
-          orderlinesNew = orderlinesNew.filter(ol => ol.product.id !== orderline.product.id);
-        } else {
-          orderlinesNew[i].amount--;
-        }
-      }
-    }
-  }
-
-  increaseProductAmount(orderline: Orderline, ctx: StateContext<CartStateModel>) {
-    const state = ctx.getState();
-    const orderlinesNew = [...state.orderlines];
-
-    for (let i = 0; i < orderlinesNew.length; i++) {
-      if (orderlinesNew[i].product.id === orderline.product.id) {
-        orderlinesNew[i].amount = orderlinesNew[i].amount + orderline.amount;
-      }
-    }
-  }
-
-  getOrderlineByProduct(product: Product, ctx: StateContext<CartStateModel>): Orderline {
-    const state = ctx.getState();
-    const orderlinesNew = [...state.orderlines];
-
-    const tempOrderline = orderlinesNew.filter(ol => ol.product.id === product.id);
-    return tempOrderline[0];
   }
 
   checkForOrderLine(orderline: Orderline, ctx: StateContext<CartStateModel>): boolean {
