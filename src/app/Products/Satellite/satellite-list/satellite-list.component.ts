@@ -15,7 +15,9 @@ import {PriceFormatterService} from '../../../Shared/Services/price-formatter.se
 })
 export class SatelliteListComponent implements OnInit {
 
-  satellites$: Observable<Satellite[]>;
+  satellites: Satellite[];
+  hasNextSatellite: boolean;
+  hasPrevSatellite: boolean;
   constructor(private satelliteService: SatelliteService,
               private router: Router,
               private cartService: CartService,
@@ -27,7 +29,57 @@ export class SatelliteListComponent implements OnInit {
   }
 
   getAllSatellites() {
-    this.satellites$ = this.satelliteService.getAllSatellites();
+    this.hasPrevSatellite = false;
+    this.hasNextSatellite = false;
+    this.satelliteService.getFirstPage()
+      .subscribe(list => {
+        this.satellites = list;
+        this.checkForNextSatellite();
+        this.checkForPrevSatellite();
+      });
+  }
+
+  getNextSatellites() {
+    this.satelliteService.nextPage()
+      .subscribe(list => {
+        this.satellites = list;
+        this.checkForNextSatellite();
+        this.checkForPrevSatellite();
+      });
+  }
+
+  getPrevSatellites() {
+    this.satelliteService.prevPage()
+      .subscribe(list => {
+        this.satellites = list;
+        this.checkForPrevSatellite();
+        this.checkForNextSatellite();
+      });
+  }
+
+
+  private checkForNextSatellite() {
+    this.hasNextSatellite = false;
+    this.satelliteService.hasNextPage()
+      .subscribe(hasNext => {
+        if (hasNext !== undefined) {
+          this.hasNextSatellite = hasNext;
+        } else {
+          this.hasNextSatellite = false;
+        }
+      });
+  }
+
+  private checkForPrevSatellite() {
+    this.hasPrevSatellite = false;
+    this.satelliteService.hasPrevPage()
+      .subscribe(hasPrev => {
+        if (hasPrev !== undefined) {
+          this.hasPrevSatellite = hasPrev;
+        } else {
+          this.hasPrevSatellite = false;
+        }
+      });
   }
 
   goToSatelliteDetail(id: string) {
