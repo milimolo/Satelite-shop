@@ -23,7 +23,7 @@
     </div>
     <h1></h1>
 
-    <mat-accordion *ngIf="(satellite$ | async)" fxLayoutAlign.xs="30">
+    <mat-accordion color="light-grey" *ngIf="(satellite$ | async)" fxLayoutAlign.xs="30">
       <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
