@@ -1,17 +1,21 @@
 
 <div>
   <mat-grid-list cols="5" rowHeight="400px">
-    <div *ngFor="let satellite of satellites$ | async">
-
-      <mat-grid-tile>
-        <mat-card class="mat-primary" (click)="goToSatelliteDetail(satellite.id)">
-          <mat-card-title class="mct">{{satellite.model}}</mat-card-title>
-          <mat-card-subtitle class="mcs">{{satellite.brand}}</mat-card-subtitle>
-          <mat-card-content> {{satellite.price}}$</mat-card-content>
-          <button  mat-raised-button color="accent" (click)="addToCart(satellite.id)"><mat-icon>add_shopping_cart</mat-icon>Buy</button>
-        </mat-card>
-      </mat-grid-tile>
-
+    <div *ngIf="satellites">
+      <div *ngFor="let satellite of satellites">
+        <mat-grid-tile>
+          <mat-card class="mat-primary" (click)="goToSatelliteDetail(satellite.id)">
+            <mat-card-title class="mct">{{satellite.model}}</mat-card-title>
+            <mat-card-subtitle class="mcs">{{satellite.brand}}</mat-card-subtitle>
+            <mat-card-content>{{priceFormat(satellite.price)}}</mat-card-content>
+           <button  mat-raised-button color="accent" (click)="addToCart(satellite.id)"><mat-icon>add_shopping_cart</mat-icon>Buy</button>
+          </mat-card>
+        </mat-grid-tile>
+      </div>
     </div>
   </mat-grid-list>
+  <div class="page-buttons">
+    <button (click)="getPrevSatellites()" mat-raised-button color="primary" [disabled]="!hasPrevSatellite">Prev Page</button>
+    <button (click)="getNextSatellites()" mat-raised-button color="primary" [disabled]="!hasNextSatellite">Next Page</button>
+  </div>
 </div>

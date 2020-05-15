@@ -47,29 +47,33 @@
       </mat-card-header>
       <mat-card-content>
         <mat-accordion>
-          <div *ngFor="let fuel of fuels$ | async">
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  {{fuel.model}} | {{fuel.brand}}
-                </mat-panel-title>
-                <mat-panel-description>
-                  Click for details
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-              <div>
-                <h4>ID: {{fuel.id}}</h4>
-                <h4>Type of Purchase: {{fuel.typeOfPurchase}}</h4>
-                <h4>Price: {{priceFormat(fuel.price)}}</h4>
-                <button routerLink="/fuel/update/{{fuel.id}}" mat-raised-button color="accent">Update</button>
-                <button (click)="deleteFuel(fuel.id)" mat-raised-button color="warn">Delete</button>
-              </div>
-            </mat-expansion-panel>
+          <div *ngIf="fuels">
+            <div *ngFor="let fuel of fuels">
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    {{fuel.model}} | {{fuel.brand}}
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Click for details
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div>
+                  <h4>ID: {{fuel.id}}</h4>
+                  <h4>Type of Purchase: {{fuel.typeOfPurchase}}</h4>
+                  <h4>Price: {{priceFormat(fuel.price)}}</h4>
+                  <button routerLink="/fuel/update/{{fuel.id}}" mat-raised-button color="accent">Update</button>
+                  <button (click)="deleteFuel(fuel.id)" mat-raised-button color="warn">Delete</button>
+                </div>
+              </mat-expansion-panel>
+            </div>
           </div>
         </mat-accordion>
       </mat-card-content>
       <mat-card-actions>
         <button routerLink="/fuel/create" mat-raised-button color="primary">Create Fuel</button>
+        <button (click)="getNextFuels()" mat-stroked-button color="primary" [disabled]="!hasNextFuel">Next Page</button>
+        <button (click)="getPrevFuels()" mat-stroked-button color="primary" [disabled]="!hasPrevFuel">Prev Page</button>
       </mat-card-actions>
     </mat-card>
   </div>

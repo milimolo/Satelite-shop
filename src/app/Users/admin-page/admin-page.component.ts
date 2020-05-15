@@ -31,6 +31,8 @@ export class AdminPageComponent implements OnInit {
   }
 
   getSatellites() {
+    this.hasNextSatellite = false;
+    this.hasPrevSatellite = false;
     this.satelliteService.getFirstPage()
       .subscribe(list => {
         this.satellites = list;
@@ -90,7 +92,14 @@ export class AdminPageComponent implements OnInit {
   }
 
   getFuels() {
-    this.fuels$ = this.fuelService.getAllFuels();
+    this.hasNextFuel = false;
+    this.hasPrevFuel = false;
+    this.fuelService.getAllFuels()
+      .subscribe(list => {
+        this.fuels = list;
+        this.checkForNextFuel();
+        this.checkForPrevFuel();
+      });
   }
 
   getNextFuels() {
