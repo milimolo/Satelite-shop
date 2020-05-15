@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {Satellite} from '../shared/satellite';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CartService} from '../../../Cart/shared/cart.service';
-import {PriceFormatterService} from "../../../Shared/Services/price-formatter.service";
+import {PriceFormatterService} from '../../../Shared/Services/price-formatter.service';
 
 @Component({
   selector: 'app-satelite-info',
@@ -16,6 +16,7 @@ export class SatelliteInfoComponent implements OnInit {
   satellite$: Observable<Satellite>;
   id: string;
   amount: number;
+  panelOpenState: boolean;
 
   constructor(private satelliteService: SatelliteService,
               private route: ActivatedRoute,
@@ -23,6 +24,7 @@ export class SatelliteInfoComponent implements OnInit {
               private priceFormatterService: PriceFormatterService) { }
 
   ngOnInit(): void {
+    this.panelOpenState = false;
     this.amount = 1;
     this.getSattelite();
   }

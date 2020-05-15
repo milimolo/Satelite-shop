@@ -1,23 +1,50 @@
-<h1 xmlns="http://www.w3.org/1999/html">Satellite details</h1>
-<div *ngIf="(satellite$ | async)" fxLayoutAlign.xs="30">
-  <div>
-    <h3>Overview</h3>
-    <h4>Model: {{(satellite$ | async)?.model}}</h4>
-    <h4>Brand: {{(satellite$ | async)?.brand}}</h4>
-    <h4>Price: {{priceFormat((satellite$ |async)?.price)}}</h4>
-  </div>
-  <h3>--------------------------</h3>
-  <div>
-    <h3>Details</h3>
-    <h4>Weight: {{(satellite$ | async)?.weight}}</h4>
-    <h4>Volume: {{(satellite$ | async)?.volume}}</h4>
-    <h4>Maximum range: {{(satellite$ | async)?.maxRange}}</h4>
-    <button  color="primary" mat-mini-fab (click)="decreaseAmount()"><mat-icon>remove</mat-icon></button>
-    <span>{{amount}}</span>
-    <button  color="primary" mat-mini-fab (click)="increaseAmount()"><mat-icon>add</mat-icon></button>
-    <button color="primary" mat-fab (click)="addToCart()"><mat-icon>add_shopping_cart</mat-icon>Buy</button>
-  </div>
+
+<div fxLayoutAlign="center">
+  <mat-card class="card">
+
+    <h2>{{(satellite$ | async)?.brand}} </h2>
+    <h4>{{(satellite$ | async)?.model}}</h4>
+
+    <h4 fxLayoutAlign="end">{{priceFormat((satellite$ |async)?.price)}}</h4>
+
+    <div fxLayoutAlign="end center">
+      <button color="primary" mat-mini-fab (click)="decreaseAmount()">
+        <mat-icon>remove</mat-icon>
+      </button>
+      <h1 class="h1-amount">{{amount}}</h1>
+      <button color="primary" mat-mini-fab (click)="increaseAmount()">
+        <mat-icon>add</mat-icon>
+      </button>
+
+      <button color="primary" mat-fab (click)="addToCart()">
+        <mat-icon>add_shopping_cart</mat-icon>
+        Buy
+      </button>
+    </div>
+    <h1></h1>
+
+    <mat-accordion *ngIf="(satellite$ | async)" fxLayoutAlign.xs="30">
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="xptitle">
+            <h1>Specifications</h1>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-divider></mat-divider>
+        <mat-list>
+          <mat-list-item>Weight: {{(satellite$ | async)?.weight}}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Volume: {{(satellite$ | async)?.volume}}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Maximum range: {{(satellite$ | async)?.maxRange}}</mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+  </mat-card>
 </div>
+
 <div *ngIf="!(satellite$ | async)">
   <h4>loading...</h4>
 </div>

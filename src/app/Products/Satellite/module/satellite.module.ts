@@ -13,6 +13,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 
 import {SatelliteCreateComponent} from '../satellite-create/satellite-create.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
 
 
 
@@ -31,7 +34,10 @@ import {SatelliteCreateComponent} from '../satellite-create/satellite-create.com
     MatIconModule,
     FlexModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatExpansionModule,
+    MatDividerModule,
+    MatListModule
   ]
 })
 export class SatelliteModule { }
