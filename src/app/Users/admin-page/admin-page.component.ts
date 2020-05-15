@@ -15,8 +15,11 @@ export class AdminPageComponent implements OnInit {
 
   satellites: Satellite[];
   fuels$: Observable<Fuel[]>;
+  fuels: Fuel[];
   hasNextSatellite: boolean;
   hasPrevSatellite: boolean;
+  hasNextFuel: boolean;
+  hasPrevFuel: boolean;
 
   constructor(private satelliteService: SatelliteService,
               private fuelService: FuelService,
@@ -56,6 +59,7 @@ export class AdminPageComponent implements OnInit {
 
 
   private checkForNextSatellite() {
+    this.hasNextSatellite = false;
     this.satelliteService.hasNextPage()
       .subscribe(hasNext => {
         if (hasNext !== undefined) {
@@ -67,6 +71,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   private checkForPrevSatellite() {
+    this.hasPrevSatellite = false;
     this.satelliteService.hasPrevPage()
       .subscribe(hasPrev => {
         if (hasPrev !== undefined) {
@@ -86,6 +91,48 @@ export class AdminPageComponent implements OnInit {
 
   getFuels() {
     this.fuels$ = this.fuelService.getAllFuels();
+  }
+
+  getNextFuels() {
+    this.fuelService.nextPage()
+      .subscribe(list => {
+        this.fuels = list;
+        this.checkForNextFuel();
+        this.checkForPrevFuel();
+      });
+  }
+
+  getPrevFuels() {
+    this.fuelService.prevPage()
+      .subscribe(list => {
+        this.fuels = list;
+        this.checkForNextFuel();
+        this.checkForPrevFuel();
+      });
+  }
+
+  private checkForNextFuel() {
+    this.hasNextFuel = false;
+    this.fuelService.hasNextPage()
+      .subscribe(bool => {
+        if (bool !== undefined) {
+          this.hasNextFuel = bool;
+        } else {
+          this.hasNextFuel = false;
+        }
+      });
+  }
+
+  private checkForPrevFuel() {
+    this.hasPrevFuel = false;
+    this.fuelService.hasPrevPage()
+      .subscribe(bool => {
+        if (bool !== undefined) {
+          this.hasPrevFuel = bool;
+        } else {
+          this.hasPrevFuel = false;
+        }
+      });
   }
 
   deleteFuel(id: string) {
