@@ -1,1 +1,5 @@
-<p>fuel-list works!</p>
+<ul *ngFor="let fuel of fuel$ | async">
+  <li>{{fuel.model}}</li>
+  <li>{{fuel.brand}}</li>
+  <li>{{fuel.price}}</li>
+</ul>
