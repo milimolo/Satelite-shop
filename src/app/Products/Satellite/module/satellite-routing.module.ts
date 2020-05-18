@@ -4,6 +4,7 @@ import {SatelliteListComponent} from '../satellite-list/satellite-list.component
 import {SatelliteInfoComponent} from '../satellite-info/satellite-info.component';
 import {SatelliteUpdateComponent} from '../satellite-update/satellite-update.component';
 import {SatelliteCreateComponent} from '../satellite-create/satellite-create.component';
+import {AuthGuard} from '../../../Shared/Guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -12,15 +13,18 @@ const routes: Routes = [
   },
   {
     path: 'info/:id',
-    component: SatelliteInfoComponent
+    component: SatelliteInfoComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'update/:id',
-    component: SatelliteUpdateComponent
+    component: SatelliteUpdateComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'create',
-    component: SatelliteCreateComponent
+    component: SatelliteCreateComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

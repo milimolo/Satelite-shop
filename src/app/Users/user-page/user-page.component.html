@@ -1,0 +1,35 @@
+<div *ngIf="user">
+  <mat-card class="user-card">
+    <mat-card-header>
+      <div *ngIf="user.photoURL">
+        <img src="{{user.photoURL}}" width="50" height="50">
+      </div>
+      <mat-card-title>
+        {{user.displayName}}
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <p>
+          Your information goes here! If something does not show up
+          , its either because there is an error or you dont have that information on your user
+        </p>
+      </div>
+      <div *ngIf="user.email">
+        <h4>Email: {{user.email}}</h4>
+      </div>
+      <div *ngIf="user.address">
+        <h4>Address: {{user.address}}</h4>
+      </div>
+      <div *ngIf="user.zipCode">
+        <h4>ZipCode: {{user.zipCode}}</h4>
+      </div>
+      <div *ngIf="user.city">
+        <h4>City: {{user.city}}</h4>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="signOut()" mat-raised-button color="accent">SIGN OUT</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

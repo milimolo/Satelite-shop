@@ -21,6 +21,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {CommonModule} from '@angular/common';
+import { UserCreateComponent } from './Users/user-create/user-create.component';
 
 
 
@@ -29,7 +30,8 @@ import {CommonModule} from '@angular/common';
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    CartComponent
+    CartComponent,
+    UserCreateComponent
   ],
   imports: [
     MatToolbarModule,
