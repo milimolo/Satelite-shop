@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {Fuel} from './fuel.model';
-import {from, Observable} from 'rxjs';
+import {from, Observable, of} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Satellite} from '../../Satellite/shared/satellite';
 
@@ -125,7 +125,7 @@ export class FuelService {
   }
 
   hasNextPage(): Observable<boolean> {
-    if (this.firstDoc !== undefined) {
+    if (this.lastDoc !== undefined) {
       return this.afs.collection('Fuel', ref => ref.orderBy('model').startAfter(this.lastDoc).limit(1))
         .snapshotChanges().pipe(
           map(actions => {
@@ -136,6 +136,8 @@ export class FuelService {
             }
           })
         );
+    } else {
+      return of(false);
     }
   }
 
@@ -151,6 +153,8 @@ export class FuelService {
             }
           })
         );
+    } else {
+      return of(false);
     }
   }
 

@@ -4,9 +4,13 @@
     <button class="btn" mat-button routerLink="/satellite">Satellites</button>
     <button class="btn" mat-button routerLink="/fuel">Fuel</button>
   </div>
-  <div>
-    <button mat-button routerLink="/cart"><mat-icon>shopping_cart</mat-icon></button>
+  <div *ngIf="!user">
     <span routerLink="/login">Login</span>
-    <span routerLink="/user/admin-page"> Admin </span>
+  </div>
+  <div *ngIf="user">
+    <button mat-button routerLink="/cart"><mat-icon>shopping_cart</mat-icon></button>
+    <div *ngIf="user.isAdmin">
+      <span routerLink="/user/admin-page"> Admin </span>
+    </div>
   </div>
 </mat-toolbar>

@@ -4,7 +4,7 @@ import {
   AngularFirestoreCollection,
   AngularFirestoreDocument
 } from '@angular/fire/firestore';
-import {from, Observable} from 'rxjs';
+import {from, Observable, of} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Satellite} from './satellite';
 
@@ -104,6 +104,8 @@ export class SatelliteService {
             }
           })
         );
+    } else {
+      return of(false);
     }
   }
 
@@ -119,6 +121,8 @@ export class SatelliteService {
             }
           })
         );
+    } else {
+      return of(false);
     }
   }
 
