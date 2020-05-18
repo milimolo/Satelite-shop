@@ -1,5 +1,5 @@
-<div *ngIf="orderline$">
-  <ul *ngFor="let orderline of orderline$">
+<div *ngIf="getCart">
+  <ul *ngFor="let orderline of getCart | async">
     <li>
       {{orderline.product.brand}} {{orderline.product.model}} || {{orderline.amount}} x {{orderline.product.price}}
       = {{orderline.totalPrice}}
