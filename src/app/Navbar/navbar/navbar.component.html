@@ -9,8 +9,7 @@
   </div>
   <div *ngIf="user">
     <button mat-button routerLink="/cart"><mat-icon>shopping_cart</mat-icon></button>
-    <div *ngIf="user.isAdmin">
-      <span routerLink="/user/admin-page"> Admin </span>
-    </div>
+    <button class="btn" mat-button routerLink="">Your Page</button>
+    <button class="btn" mat-button routerLink="/user/admin-page"> Admin </button>
   </div>
 </mat-toolbar>
