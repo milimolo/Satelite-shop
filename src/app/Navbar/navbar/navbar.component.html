@@ -2,13 +2,11 @@
   <div>
     <button class="btn" mat-button routerLink="">Home</button>
     <button class="btn" mat-button routerLink="/satellite">Satellites</button>
-    <button class="btn" mat-button routerLink="/login">Login</button>
     <button class="btn" mat-button routerLink="/fuel">Fuel</button>
   </div>
   <div>
-    <button class="btn" mat-button routerLink="/cart">
-      <mat-icon>shopping_cart</mat-icon>
-    </button>
-    <button class="btn" mat-button routerLink="/user/admin-page"> Admin</button>
+    <button mat-button routerLink="/cart"><mat-icon>shopping_cart</mat-icon></button>
+    <span routerLink="/login">Login</span>
+    <span routerLink="/user/admin-page"> Admin </span>
   </div>
 </mat-toolbar>
