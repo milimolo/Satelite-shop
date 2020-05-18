@@ -33,7 +33,7 @@ export class CartState {
   @Action(AddToCart)
   addToCart(ctx: StateContext<CartStateModel>, action: AddToCart) {
     const state = ctx.getState();
-    if (this.checkForProduct(action.product, ctx) && this.checkForOrderLine(action, ctx)) {
+    if (this.checkForProduct(action.product, ctx) || this.checkForOrderLine(action, ctx)) {
       ctx.dispatch(new IncreaseProductAmount(action.product, action.amount, action.totalPrice));
     } else {
       const orderlinesNew = [...state.orderlines];
