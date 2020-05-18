@@ -35,14 +35,7 @@ export class AuthService {
   }
 
   SignUp(email: string, password: string) {
-    this.afAuth
-      .createUserWithEmailAndPassword(email, password)
-      .then(res => {
-        console.log('You are now signed up', res);
-      })
-      .catch(error => {
-        console.log('Something went wrong', error);
-      });
+    return this.afAuth.createUserWithEmailAndPassword(email, password);
   }
   SignInEmailAndPassword(email: string, password: string) {
     this.afAuth
