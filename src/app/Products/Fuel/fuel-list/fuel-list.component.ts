@@ -23,4 +23,8 @@ export class FuelListComponent implements OnInit {
     this.router.navigate(['fuel/info/' + id]);
   }
 
+  addToCart(id: string) {
+
+  }
+
 }

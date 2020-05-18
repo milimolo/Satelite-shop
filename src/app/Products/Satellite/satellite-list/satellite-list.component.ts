@@ -90,7 +90,6 @@ export class SatelliteListComponent implements OnInit {
     this.cartService.addToCart(id, 1);
   }
 
-
   updateSatellite(id: string) {
     this.router.navigate(['satellite/update/' + id]);
   }

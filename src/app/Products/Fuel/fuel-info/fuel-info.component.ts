@@ -31,4 +31,8 @@ export class FuelInfoComponent implements OnInit {
       });
   }
 
+  addToCart() {
+
+  }
+
 }
