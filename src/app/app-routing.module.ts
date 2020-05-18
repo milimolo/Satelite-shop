@@ -3,9 +3,10 @@ import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {CartComponent} from './Cart/cart/cart.component';
+import {AuthGuard} from './Shared/Guard/auth.guard';
 
 const routes: Routes = [
-  { path: 'cart', component: CartComponent },
+  { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
   { path: 'satellite', loadChildren: () => import('./Products/Satellite/module/satellite.module').then(s => s.SatelliteModule)},
   { path: 'order', loadChildren: () => import('./Orders/module/order.module').then(o => o.OrderModule)},
   { path: 'fuel', loadChildren: () => import('./Products/Fuel/module/fuel.module').then(f => f.FuelModule)},

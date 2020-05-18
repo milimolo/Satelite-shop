@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../Shared/Services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,18 +10,24 @@ import {AuthService} from '../Shared/Services/auth.service';
 export class LoginComponent implements OnInit {
   email: string;
   password: string;
-  constructor(public auth: AuthService) { }
+  constructor(public auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
   signUp() {
-    this.auth.SignUp(this.email, this.password);
-    this.email = '';
-    this.password = '';
+    this.router.navigate(['/user/sign-up']);
   }
   signIn() {
     this.auth.SignInEmailAndPassword(this.email, this.password);
+    this.router.navigate(['/user/your-page']);
     this.email = '';
     this.password = '';
+  }
+
+  signInWithGoogle() {
+    this.auth.googleSignIn()
+      .then(() => {
+        this.router.navigate(['/user/your-page']);
+      });
   }
 }

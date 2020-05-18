@@ -9,10 +9,8 @@ import {User} from "../../Users/shared/user.model";
 })
 export class NavbarComponent implements OnInit {
 
-
-  loggedIn: boolean;
   user: User
-  constructor(public authService: AuthService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getLoggedInUser();
