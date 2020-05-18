@@ -1,4 +1,5 @@
-<ul *ngFor="let fuel of fuel$ | async">
-  <li>{{fuel.model}},  {{fuel.brand}},  {{fuel.price}}</li>
-  <button (click)="goToFuelDetail(fuel.id)">see more</button>
-</ul>
+<div *ngFor="let fuel of fuel$ | async">
+  <a>{{fuel.model}},  {{fuel.brand}},  {{fuel.price}}</a>
+  <button mat-button (click)="goToFuelDetail(fuel.id)">see more</button>
+  <button mat-button (click)="addToCart(fuel)">Buy</button>
+</div>

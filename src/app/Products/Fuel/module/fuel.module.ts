@@ -9,6 +9,11 @@ import {MatButtonModule} from '@angular/material/button';
 import {FuelUpdateComponent} from '../fuel-update/fuel-update.component';
 import {FuelListComponent} from '../fuel-list/fuel-list.component';
 import {FuelInfoComponent} from '../fuel-info/fuel-info.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
+import {MatListModule} from '@angular/material/list';
+import {FlexModule} from '@angular/flex-layout';
 
 
 @NgModule({
@@ -23,7 +28,12 @@ import {FuelInfoComponent} from '../fuel-info/fuel-info.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatExpansionModule,
+    MatCardModule,
+    MatIconModule,
+    MatListModule,
+    FlexModule
   ]
 })
 export class FuelModule { }
