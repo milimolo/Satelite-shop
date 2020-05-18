@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
 import {CartService} from '../../../Cart/shared/cart.service';
 import {Product} from '../../shared/product.model';
 import {PriceFormatterService} from '../../../Shared/Services/price-formatter.service';
-import {AddToCart} from '../../../Cart/cart/cart.action';
+import {AddToCart} from '../../../Cart/shared/cart.action';
 import {Store} from '@ngxs/store';
 
 

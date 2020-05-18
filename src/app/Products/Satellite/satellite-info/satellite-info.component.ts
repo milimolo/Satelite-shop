@@ -5,9 +5,9 @@ import {Satellite} from '../shared/satellite';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CartService} from '../../../Cart/shared/cart.service';
 import {Product} from '../../shared/product.model';
-import {CartState} from '../../../Cart/cart/cart.state';
+import {CartState} from '../../../Cart/shared/cart.state';
 import {Select, Store} from '@ngxs/store';
-import {AddToCart} from '../../../Cart/cart/cart.action';
+import {AddToCart} from '../../../Cart/shared/cart.action';
 import { PriceFormatterService } from 'src/app/Shared/Services/price-formatter.service';
 
 @Component({

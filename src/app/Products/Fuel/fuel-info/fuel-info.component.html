@@ -7,6 +7,16 @@
 
     <h4 fxLayoutAlign="end">{{priceFormat(fuel$.price)}}</h4>
 
+    <mat-form-field>
+      <mat-label>Type of purchasement</mat-label>
+      <select matNativeControl required>
+        <option value="barrel">Barrel (200L)</option>
+        <option value="can">Can (10L)</option>
+        <option value="bigBarrel">Big Barrel (1000L)</option>
+      </select>
+    </mat-form-field>
+
+
     <div fxLayoutAlign="end center">
       <button color="primary" mat-mini-fab (click)="decreaseProductAmount()">
         <mat-icon>remove</mat-icon>
@@ -15,7 +25,6 @@
       <button color="primary" mat-mini-fab (click)="increaseProductAmount()">
         <mat-icon>add</mat-icon>
       </button>
-
       <button color="primary" mat-fab (click)="addToCart(fuel$)">
         <mat-icon>add_shopping_cart</mat-icon>
         Buy
@@ -23,20 +32,6 @@
     </div>
     <h1></h1>
 
-    <mat-accordion color="light-grey" *ngIf="fuel$" fxLayoutAlign.xs="30">
-      <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-          <mat-panel-title class="xptitle">
-            <h1>Specifications</h1>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-divider></mat-divider>
-        <mat-list>
-          <mat-list-item>Volume: {{fuel$.typeOfPurchase}}</mat-list-item>
-        </mat-list>
-      </mat-expansion-panel>
-    </mat-accordion>
 
   </mat-card>
 </div>

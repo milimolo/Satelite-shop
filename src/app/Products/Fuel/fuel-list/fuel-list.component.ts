@@ -3,7 +3,7 @@ import {FuelService} from '../shared/fuel.service';
 import {Fuel} from '../shared/fuel.model';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
-import {AddToCart} from '../../../Cart/cart/cart.action';
+import {AddToCart} from '../../../Cart/shared/cart.action';
 import {Store} from '@ngxs/store';
 import {PriceFormatterService} from '../../../Shared/Services/price-formatter.service';
 

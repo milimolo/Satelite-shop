@@ -3,7 +3,7 @@ import {FuelService} from '../shared/fuel.service';
 import {Observable} from 'rxjs';
 import {Fuel} from '../shared/fuel.model';
 import {ActivatedRoute} from '@angular/router';
-import {AddToCart} from '../../../Cart/cart/cart.action';
+import {AddToCart} from '../../../Cart/shared/cart.action';
 import {Store} from '@ngxs/store';
 import {PriceFormatterService} from '../../../Shared/Services/price-formatter.service';
 
@@ -18,12 +18,14 @@ export class FuelInfoComponent implements OnInit {
   amount: number;
   panelOpenState: boolean;
 
+
   constructor(private fuelService: FuelService,
               private route: ActivatedRoute,
               private store: Store,
               private priceFormatterService: PriceFormatterService) { }
 
   ngOnInit(): void {
+
     this.panelOpenState = false;
     this.amount = 1;
     this.getFuel();

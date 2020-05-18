@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Orderline} from '../../Orders/shared/orderline.model';
 import {CartService} from '../shared/cart.service';
 import {Action, Select, StateContext, Store} from '@ngxs/store';
-import {CartState, CartStateModel} from './cart.state';
+import {CartState, CartStateModel} from '../shared/cart.state';
 import {Observable} from 'rxjs';
-import {AddToCart, DecreaseProductAmount, IncreaseProductAmount, RemoveOrderline} from './cart.action';
+import {AddToCart, DecreaseProductAmount, IncreaseProductAmount, RemoveOrderline} from '../shared/cart.action';
 
 @Component({
   selector: 'app-cart',

@@ -14,7 +14,7 @@ import {LoginComponent} from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CartComponent} from './Cart/cart/cart.component';
 import {SatelliteModule} from './Products/Satellite/module/satellite.module';
-import {CartState} from './Cart/cart/cart.state';
+import {CartState} from './Cart/shared/cart.state';
 import {NgxsStoragePluginModule} from '@ngxs/storage-plugin';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
