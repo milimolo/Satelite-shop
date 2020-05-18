@@ -21,6 +21,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import { FuelListComponent } from './Products/Fuel/fuel-list/fuel-list.component';
+import { FuelInfoComponent } from './products/fuel/fuel-info/fuel-info.component';
+import {CommonModule} from '@angular/common';
 
 
 
@@ -29,8 +31,7 @@ import { FuelListComponent } from './Products/Fuel/fuel-list/fuel-list.component
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    CartComponent,
-    FuelListComponent
+    CartComponent
   ],
   imports: [
     MatToolbarModule,

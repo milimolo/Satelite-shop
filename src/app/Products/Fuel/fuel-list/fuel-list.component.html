@@ -1,5 +1,4 @@
 <ul *ngFor="let fuel of fuel$ | async">
-  <li>{{fuel.model}}</li>
-  <li>{{fuel.brand}}</li>
-  <li>{{fuel.price}}</li>
+  <li>{{fuel.model}},  {{fuel.brand}},  {{fuel.price}}</li>
+  <button (click)="goToFuelDetail(fuel.id)">see more</button>
 </ul>
