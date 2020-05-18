@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { FuelRoutingModule } from './fuel-routing.module';
 import {FuelCreateComponent} from '../fuel-create/fuel-create.component';
 import {ReactiveFormsModule} from '@angular/forms';
