@@ -14,6 +14,7 @@ export class FuelCreateComponent implements OnInit {
     model: [''],
     brand: [''],
     price: [''],
+    photoURL: [''],
     typeOfPurchase: ['']
   });
 

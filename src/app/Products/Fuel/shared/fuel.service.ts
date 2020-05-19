@@ -107,6 +107,7 @@ export class FuelService {
       model: fuel.model,
       brand: fuel.brand,
       price: fuel.price,
+      photoURL: fuel.photoURL,
       typeOfPurchase: fuel.typeOfPurchase
     }));
   }
@@ -116,6 +117,7 @@ export class FuelService {
       model: fuel.model,
       brand: fuel.brand,
       price: fuel.price,
+      photoURL: fuel.photoURL,
       typeOfPurchase: fuel.typeOfPurchase
     }));
   }

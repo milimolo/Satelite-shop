@@ -14,6 +14,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import {FlexModule} from '@angular/flex-layout';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -22,18 +23,19 @@ import {FlexModule} from '@angular/flex-layout';
     FuelUpdateComponent,
     FuelListComponent,
     FuelInfoComponent],
-  imports: [
-    CommonModule,
-    FuelRoutingModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatExpansionModule,
-    MatCardModule,
-    MatIconModule,
-    MatListModule,
-    FlexModule
-  ]
+    imports: [
+        CommonModule,
+        FuelRoutingModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatExpansionModule,
+        MatCardModule,
+        MatIconModule,
+        MatListModule,
+        FlexModule,
+        MatGridListModule
+    ]
 })
 export class FuelModule { }

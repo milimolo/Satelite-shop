@@ -36,7 +36,8 @@ export class FuelInfoComponent implements OnInit {
       brand: fuel.brand,
       model: fuel.model,
       typeOfPurchase: fuel.typeOfPurchase,
-      price: fuel.price
+      price: fuel.price,
+      photoURL: fuel.photoURL
       });
   }
 
@@ -45,7 +46,8 @@ export class FuelInfoComponent implements OnInit {
       id: fuel.id,
       model: fuel.model,
       brand: fuel.brand,
-      price: fuel.price
+      price: fuel.price,
+      photoURL: fuel.photoURL
     };
     const totalPrice = this.amount * product.price;
     this.store.dispatch(new AddToCart(product, this.amount, totalPrice));
