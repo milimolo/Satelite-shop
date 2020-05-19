@@ -3,6 +3,9 @@ import {FuelService} from '../shared/fuel.service';
 import {Observable} from 'rxjs';
 import {Fuel} from '../shared/fuel.model';
 import {ActivatedRoute} from '@angular/router';
+import {AddToCart} from '../../../Cart/cart/cart.action';
+import {Store} from '@ngxs/store';
+import {PriceFormatterService} from '../../../Shared/Services/price-formatter.service';
 
 @Component({
   selector: 'app-fuel-info',
@@ -12,11 +15,17 @@ import {ActivatedRoute} from '@angular/router';
 export class FuelInfoComponent implements OnInit {
 
   fuel$: Fuel;
+  amount: number;
+  panelOpenState: boolean;
 
   constructor(private fuelService: FuelService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private store: Store,
+              private priceFormatterService: PriceFormatterService) { }
 
   ngOnInit(): void {
+    this.panelOpenState = false;
+    this.amount = 1;
     this.getFuel();
   }
 
@@ -29,6 +38,32 @@ export class FuelInfoComponent implements OnInit {
       typeOfPurchase: fuel.typeOfPurchase,
       price: fuel.price
       });
+  }
+
+  addToCart(fuel: Fuel) {
+    const product = {
+      id: fuel.id,
+      model: fuel.model,
+      brand: fuel.brand,
+      price: fuel.price
+    };
+    const totalPrice = this.amount * product.price;
+    this.store.dispatch(new AddToCart(product, this.amount, totalPrice));
+  }
+
+  decreaseProductAmount() {
+    if (this.amount < 2) {
+      return;
+    }
+    this.amount--;
+  }
+
+  increaseProductAmount() {
+    this.amount++;
+  }
+
+  priceFormat(price: number): string {
+    return this.priceFormatterService.formatPrice(price);
   }
 
 }

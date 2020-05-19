@@ -1,0 +1,42 @@
+<h2>Fill out to sign up!</h2>
+<div>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="text" formControlName="email" placeholder="example123@exampleMail.com" required/>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" required/>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Full Name</mat-label>
+        <input matInput type="text" formControlName="displayName" placeholder="Ex. Simon Dim Simsen" required>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Address</mat-label>
+        <input matInput type="text" formControlName="address" placeholder="Ex. Example Street 12" required/>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Zip Code:</mat-label>
+        <input matInput type="number" formControlName="zipCode" placeholder="Ex. 6700" required min="0"/>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>City:</mat-label>
+        <input matInput type="text" formControlName="city" placeholder="Ex. Esbjerg" required/>
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-raised-button color="primary">SIGN UP</button>
+    </div>
+  </form>
+</div>

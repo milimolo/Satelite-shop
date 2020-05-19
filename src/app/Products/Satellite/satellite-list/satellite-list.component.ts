@@ -6,6 +6,8 @@ import {Router} from '@angular/router';
 import {CartService} from '../../../Cart/shared/cart.service';
 import {Product} from '../../shared/product.model';
 import {PriceFormatterService} from '../../../Shared/Services/price-formatter.service';
+import {AddToCart} from '../../../Cart/cart/cart.action';
+import {Store} from '@ngxs/store';
 
 
 @Component({
@@ -21,7 +23,8 @@ export class SatelliteListComponent implements OnInit {
   constructor(private satelliteService: SatelliteService,
               private router: Router,
               private cartService: CartService,
-              private priceFormatterService: PriceFormatterService) { }
+              private priceFormatterService: PriceFormatterService,
+              private store: Store) { }
 
 
   ngOnInit(): void {
@@ -86,10 +89,15 @@ export class SatelliteListComponent implements OnInit {
     this.router.navigate(['satellite/info/' + id]);
   }
 
-  addToCart(id: string) {
-    this.cartService.addToCart(id, 1);
+  addToCart(satellite: Satellite) {
+    const product = {
+      id: satellite.id,
+      brand: satellite.brand,
+      model: satellite.model,
+      price: satellite.price
+    };
+    this.store.dispatch(new AddToCart(product, 1, product.price));
   }
-
 
   updateSatellite(id: string) {
     this.router.navigate(['satellite/update/' + id]);
