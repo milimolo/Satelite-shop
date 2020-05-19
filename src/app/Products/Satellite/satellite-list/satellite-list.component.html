@@ -7,6 +7,7 @@
           <mat-card class="mat-primary" (click)="goToSatelliteDetail(satellite.id)">
             <mat-card-title class="mct">{{satellite.model}}</mat-card-title>
             <mat-card-subtitle class="mcs">{{satellite.brand}}</mat-card-subtitle>
+            <img src="{{satellite.photoURL}}" width="100" height="100">
             <mat-card-content>{{priceFormat(satellite.price)}}</mat-card-content>
            <button  mat-raised-button color="accent" (click)="addToCart(satellite.id)"><mat-icon>add_shopping_cart</mat-icon>Buy</button>
           </mat-card>

@@ -144,7 +144,8 @@ export class SatelliteService {
       maxRange: satellite.maxRange,
       volume: satellite.volume,
       weight: satellite.weight,
-      price: satellite.price
+      price: satellite.price,
+      photoURL: satellite.photoURL
       }));
   }
 
@@ -155,7 +156,8 @@ export class SatelliteService {
       maxRange: satellite.maxRange,
       volume: satellite.volume,
       weight: satellite.weight,
-      price: satellite.price
+      price: satellite.price,
+      photoURL: satellite.photoURL
     }));
   }
 

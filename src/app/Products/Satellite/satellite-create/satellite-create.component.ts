@@ -16,7 +16,8 @@ export class SatelliteCreateComponent implements OnInit {
     weight: [''],
     maxRange: [''],
     volume: [''],
-    price: ['']
+    price: [''],
+    photoURL: ['']
   });
 
   constructor(private satelliteService: SatelliteService,
