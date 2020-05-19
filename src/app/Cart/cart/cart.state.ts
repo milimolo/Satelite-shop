@@ -60,6 +60,7 @@ export class CartState {
           orderlinesNew = orderlinesNew.filter(ol => ol.product.id !== action.product.id);
         } else {
           orderlinesNew[i].amount--;
+          orderlinesNew[i].totalPrice = orderlinesNew[i].totalPrice - orderlinesNew[i].product.price;
         }
       }
     }
@@ -77,6 +78,7 @@ export class CartState {
     for (let i = 0; i < orderlinesNew.length; i++) {
       if (orderlinesNew[i].product.id === action.product.id) {
         orderlinesNew[i].amount = orderlinesNew[i].amount + action.amount;
+        orderlinesNew[i].totalPrice = orderlinesNew[i].totalPrice + orderlinesNew[i].product.price;
       }
     }
     ctx.setState({

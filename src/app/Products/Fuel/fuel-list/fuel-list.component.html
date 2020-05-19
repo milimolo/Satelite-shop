@@ -1,7 +1,7 @@
 <div>
   <mat-grid-list cols="5" rowHeight="400px">
-    <div *ngIf="fuel$">
-      <div *ngFor="let fuel of fuel$ | async">
+    <div *ngIf="fuel">
+      <div *ngFor="let fuel of fuel">
         <mat-grid-tile>
           <mat-card class="mat-primary">
             <div (click)="goToFuelDetail(fuel.id)">
@@ -16,4 +16,8 @@
       </div>
     </div>
   </mat-grid-list>
+  <div class="page-buttons">
+    <button (click)="getPrevFuels()" mat-raised-button color="primary" [disabled]="!hasPrevFuel">Prev Page</button>
+    <button (click)="getNextFuels()" mat-raised-button color="primary" [disabled]="!hasNextFuel">Next Page</button>
+  </div>
 </div>

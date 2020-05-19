@@ -13,15 +13,24 @@ import {PriceFormatterService} from '../../../Shared/Services/price-formatter.se
   styleUrls: ['./fuel-list.component.css']
 })
 export class FuelListComponent implements OnInit {
-
-  fuel$: Observable<Fuel[]>;
+  
+  fuel: Fuel[];
+  hasNextFuel: boolean;
+  hasPrevFuel: boolean;
   constructor(private fuelService: FuelService,
               private router: Router,
               private store: Store,
               private priceFormatterService: PriceFormatterService) { }
 
   ngOnInit(): void {
-    this.fuel$ = this.fuelService.getAllFuels();
+    this.getAllFuel();
+  }
+
+  getAllFuel() {
+    this.fuelService.firstPage()
+      .subscribe(list => {
+        this.fuel = list;
+      });
   }
 
   goToFuelDetail(id: string) {
@@ -37,8 +46,51 @@ export class FuelListComponent implements OnInit {
     };
     this.store.dispatch(new AddToCart(product, 1, product.price));
   }
+
   priceFormat(price: number): string {
     return this.priceFormatterService.formatPrice(price);
+  }
+
+  getNextFuels() {
+    this.fuelService.nextPage()
+      .subscribe(list => {
+        this.fuel = list;
+        this.checkForNextFuel();
+        this.checkForPrevFuel();
+      });
+  }
+
+  getPrevFuels() {
+    this.fuelService.prevPage()
+      .subscribe(list => {
+        this.fuel = list;
+        this.checkForNextFuel();
+        this.checkForPrevFuel();
+      });
+  }
+
+  private checkForNextFuel() {
+    this.hasNextFuel = false;
+    this.fuelService.hasNextPage()
+      .subscribe(bool => {
+        if (bool !== undefined) {
+          this.hasNextFuel = bool;
+        } else {
+          this.hasNextFuel = false;
+        }
+      });
+  }
+
+  private checkForPrevFuel() {
+    this.hasPrevFuel = false;
+    this.fuelService.hasPrevPage()
+      .subscribe(bool => {
+        if (bool !== undefined) {
+          this.hasPrevFuel = bool;
+        } else {
+          this.hasPrevFuel = false;
+        }
+      });
   }
 
 }

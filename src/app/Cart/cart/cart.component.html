@@ -1,14 +1,42 @@
-<div *ngIf="getCart">
-  <ul *ngFor="let orderline of getCart | async">
-    <li>
-      {{orderline.product.brand}} {{orderline.product.model}} || {{orderline.amount}} x {{orderline.product.price}}
-      = {{orderline.totalPrice}}
-      <button (click)="decreaseProductAmount(orderline)">-</button>
-      <span>{{orderline.amount}}</span>
-      <button (click)="increaseProductAmount(orderline)">+</button>
-      <button (click)="deleteOrderline(orderline)">
-        Delete product(s)
-      </button>
-    </li>
-  </ul>
-</div>
+<mat-card class="cart-card">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-card-title>Shopping Cart</mat-card-title>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <mat-divider></mat-divider>
+      <mat-card-title>Total Price: {{formatPrice(getTotalPrice())}}</mat-card-title>
+      <button mat-raised-button color="primary">Buy</button>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div *ngIf="cart">
+      <div *ngFor="let orderLine of cart">
+        <mat-card>
+          <mat-card-content>
+            <div>
+              <h4>Model: {{orderLine.product.brand}}</h4>
+              <h4>Brand: {{orderLine.product.model}}</h4>
+            </div>
+            <div>
+              <h4>
+                Amount: {{orderLine.amount}}
+                || Price: {{formatPrice(orderLine.product.price)}}
+                || Total: {{formatPrice(orderLine.totalPrice)}}
+              </h4>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="accent" (click)="decreaseProductAmount(orderLine)">-</button>
+            <button mat-raised-button color="accent" (click)="increaseProductAmount(orderLine)">+</button>
+            <button mat-raised-button color="warn" (click)="deleteOrderline(orderLine)">Delete</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      <div>
+        <h4>Total: {{formatPrice(getTotalPrice())}}</h4>
+        <button mat-raised-button color="primary">Buy</button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
