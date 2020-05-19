@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   email: string;
   password: string;
-  constructor(public auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -18,10 +18,12 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/user/sign-up']);
   }
   signIn() {
-    this.auth.SignInEmailAndPassword(this.email, this.password);
-    this.router.navigate(['/user/your-page']);
-    this.email = '';
-    this.password = '';
+    this.auth.SignInEmailAndPassword(this.email, this.password)
+      .then(() => {
+        this.router.navigate(['/user/your-page']);
+        this.email = '';
+        this.password = '';
+      });
   }
 
   signInWithGoogle() {
@@ -29,5 +31,24 @@ export class LoginComponent implements OnInit {
       .then(() => {
         this.router.navigate(['/user/your-page']);
       });
+  }
+
+  getAuth() {
+    return this.auth;
+  }
+
+  getAuthUserData() {
+    return this.auth.userData;
+  }
+
+  logout() {
+    this.auth.signOut()
+      .then(() => {
+        this.router.navigate(['/login']);
+      });
+  }
+
+  goToUserPage() {
+    this.router.navigate(['/user/your-page']);
   }
 }

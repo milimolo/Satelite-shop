@@ -38,14 +38,7 @@ export class AuthService {
     return this.afAuth.createUserWithEmailAndPassword(email, password);
   }
   SignInEmailAndPassword(email: string, password: string) {
-    this.afAuth
-      .signInWithEmailAndPassword(email, password)
-      .then(res => {
-        console.log('You are now logged in', res);
-      })
-      .catch(error => {
-        console.log('Something went wrong', error);
-      });
+    return this.afAuth.signInWithEmailAndPassword(email, password);
   }
   async googleSignIn() {
       const provider = new auth.GoogleAuthProvider();
