@@ -1,12 +1,13 @@
 
-<div fxLayoutAlign="center" *ngIf="fuel$">
+<div fxLayoutAlign="center" *ngIf="fuel">
   <mat-card class="card">
 
-    <h2>{{(fuel$.brand)}} </h2>
-    <h4>{{fuel$.model}}</h4>
-    <img src="{{fuel$.photoURL}}" width="100" height="100">
+    <h2>{{(fuel.brand)}} </h2>
+    <h4>{{fuel.model}}</h4>
+    <img src="{{fuel.photoURL}}" width="100" height="100">
 
-    <h4 fxLayoutAlign="end">{{priceFormat(fuel$.price)}}</h4>
+    <h4 fxLayoutAlign="end" *ngIf="stock">In Stock: {{stock.count}}</h4>
+    <h4 fxLayoutAlign="end">{{priceFormat(fuel.price)}}</h4>
 
     <div fxLayoutAlign="end center">
       <button color="primary" mat-mini-fab (click)="decreaseProductAmount()">
@@ -17,14 +18,14 @@
         <mat-icon>add</mat-icon>
       </button>
 
-      <button color="primary" mat-fab (click)="addToCart(fuel$)">
+      <button color="primary" mat-fab (click)="addToCart(fuel)">
         <mat-icon>add_shopping_cart</mat-icon>
         Buy
       </button>
     </div>
     <h1></h1>
 
-    <mat-accordion color="light-grey" *ngIf="fuel$" fxLayoutAlign.xs="30">
+    <mat-accordion color="light-grey" *ngIf="fuel" fxLayoutAlign.xs="30">
       <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
@@ -34,7 +35,7 @@
         </mat-expansion-panel-header>
         <mat-divider></mat-divider>
         <mat-list>
-          <mat-list-item>Volume: {{fuel$.typeOfPurchase}}</mat-list-item>
+          <mat-list-item>Volume: {{fuel.typeOfPurchase}}</mat-list-item>
         </mat-list>
       </mat-expansion-panel>
     </mat-accordion>
@@ -42,6 +43,6 @@
   </mat-card>
 </div>
 
-<div *ngIf="!fuel$">
+<div *ngIf="!fuel">
   <h4>loading...</h4>
 </div>

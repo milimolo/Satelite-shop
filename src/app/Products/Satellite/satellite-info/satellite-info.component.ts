@@ -9,6 +9,8 @@ import {CartState} from '../../../Cart/cart/cart.state';
 import {Select, Store} from '@ngxs/store';
 import {AddToCart} from '../../../Cart/cart/cart.action';
 import { PriceFormatterService } from 'src/app/Shared/Services/price-formatter.service';
+import {Stock} from "../../shared/stock.model";
+import {StockService} from "../../shared/stock.service";
 
 @Component({
   selector: 'app-satelite-info',
@@ -22,13 +24,15 @@ export class SatelliteInfoComponent implements OnInit {
   amount: number;
   panelOpenState: boolean;
   product: Product;
+  stock: Stock;
 
   constructor(private satelliteService: SatelliteService,
               private route: ActivatedRoute,
               private cartService: CartService,
               private cartState: CartState,
               private store: Store,
-              private priceFormatterService: PriceFormatterService) { }
+              private priceFormatterService: PriceFormatterService,
+              private stockService: StockService) { }
 
   ngOnInit(): void {
     this.panelOpenState = false;
@@ -45,6 +49,7 @@ export class SatelliteInfoComponent implements OnInit {
 
   getSattelite() {
     this.id = this.route.snapshot.paramMap.get('id');
+    this.getStockForProduct(this.id);
     this.satellite$ = this.satelliteService.getSatellite(this.id);
   }
 
@@ -63,5 +68,12 @@ export class SatelliteInfoComponent implements OnInit {
 
   priceFormat(price: number): string {
     return this.priceFormatterService.formatPrice(price);
+  }
+
+  getStockForProduct(pid: string) {
+    this.stockService.getStockForProduct(pid)
+      .subscribe(stock => {
+        this.stock = stock;
+      });
   }
 }

@@ -6,6 +6,8 @@ import {ActivatedRoute} from '@angular/router';
 import {AddToCart} from '../../../Cart/cart/cart.action';
 import {Store} from '@ngxs/store';
 import {PriceFormatterService} from '../../../Shared/Services/price-formatter.service';
+import {Stock} from '../../shared/stock.model';
+import {StockService} from "../../shared/stock.service";
 
 @Component({
   selector: 'app-fuel-info',
@@ -14,14 +16,16 @@ import {PriceFormatterService} from '../../../Shared/Services/price-formatter.se
 })
 export class FuelInfoComponent implements OnInit {
 
-  fuel$: Fuel;
+  fuel: Fuel;
+  stock: Stock;
   amount: number;
   panelOpenState: boolean;
 
   constructor(private fuelService: FuelService,
               private route: ActivatedRoute,
               private store: Store,
-              private priceFormatterService: PriceFormatterService) { }
+              private priceFormatterService: PriceFormatterService,
+              private stockService: StockService) { }
 
   ngOnInit(): void {
     this.panelOpenState = false;
@@ -31,7 +35,8 @@ export class FuelInfoComponent implements OnInit {
 
   getFuel() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.fuelService.getFuel(id).subscribe(fuel => this.fuel$ = {
+    this.getStockForProduct(id);
+    this.fuelService.getFuel(id).subscribe(fuel => this.fuel = {
       id: fuel.id,
       brand: fuel.brand,
       model: fuel.model,
@@ -66,6 +71,13 @@ export class FuelInfoComponent implements OnInit {
 
   priceFormat(price: number): string {
     return this.priceFormatterService.formatPrice(price);
+  }
+
+  getStockForProduct(pid: string) {
+    this.stockService.getStockForProduct(pid)
+      .subscribe(stock => {
+        this.stock = stock;
+      });
   }
 
 }

@@ -8,6 +8,8 @@ import {Product} from '../../shared/product.model';
 import {PriceFormatterService} from '../../../Shared/Services/price-formatter.service';
 import {AddToCart} from '../../../Cart/cart/cart.action';
 import {Store} from '@ngxs/store';
+import {StockService} from '../../shared/stock.service';
+import {Stock} from '../../shared/stock.model';
 
 
 @Component({
@@ -97,10 +99,6 @@ export class SatelliteListComponent implements OnInit {
       price: satellite.price
     };
     this.store.dispatch(new AddToCart(product, 1, product.price));
-  }
-
-  updateSatellite(id: string) {
-    this.router.navigate(['satellite/update/' + id]);
   }
 
   priceFormat(price: number): string {
