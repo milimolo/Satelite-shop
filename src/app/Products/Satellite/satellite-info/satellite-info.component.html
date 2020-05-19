@@ -4,6 +4,7 @@
 
     <h2>{{(satellite$ | async)?.brand}} </h2>
     <h4>{{(satellite$ | async)?.model}}</h4>
+    <img src="{{(satellite$ | async)?.photoURL}}" width="100" height="100">
 
     <h4 fxLayoutAlign="end">{{priceFormat((satellite$ |async)?.price)}}</h4>
 

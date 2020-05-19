@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../shared/user.service";
-import {AuthService} from "../../Shared/Services/auth.service";
-import {FormBuilder} from "@angular/forms";
-import {User} from "../shared/user.model";
+import {UserService} from '../shared/user.service';
+import {AuthService} from '../../Shared/Services/auth.service';
+import {FormBuilder} from '@angular/forms';
+import {User} from '../shared/user.model';
 
 @Component({
   selector: 'app-user-create',

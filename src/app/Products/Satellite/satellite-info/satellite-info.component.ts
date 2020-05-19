@@ -38,7 +38,8 @@ export class SatelliteInfoComponent implements OnInit {
       price: s.price,
       brand: s.brand,
       id: s.id,
-      model: s.model
+      model: s.model,
+      photoURL: s.photoURL
     });
   }
 
