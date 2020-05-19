@@ -4,8 +4,12 @@ import {CartService} from '../shared/cart.service';
 import {Action, Select, StateContext, Store} from '@ngxs/store';
 import {CartState, CartStateModel} from './cart.state';
 import {Observable} from 'rxjs';
-import {AddToCart, DecreaseProductAmount, IncreaseProductAmount, RemoveOrderline} from './cart.action';
+import {AddToCart, ClearCart, DecreaseProductAmount, IncreaseProductAmount, RemoveOrderline} from './cart.action';
 import {PriceFormatterService} from '../../Shared/Services/price-formatter.service';
+import {AuthService} from "../../Shared/Services/auth.service";
+import {OrderService} from "../../Orders/shared/order.service";
+import {Order} from "../../Orders/shared/order.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-cart',
@@ -17,7 +21,13 @@ export class CartComponent implements OnInit {
   cart: Orderline[];
   @Select(CartState.getCart)
   getCart: Observable<Orderline[]>;
-  constructor(private cartService: CartService, private store: Store, private priceFomartter: PriceFormatterService) {
+  constructor(
+    private cartService: CartService,
+    private store: Store,
+    private priceFomartter: PriceFormatterService,
+    private authService: AuthService,
+    private orderService: OrderService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -56,6 +66,24 @@ export class CartComponent implements OnInit {
 
   formatPrice(price: number) {
     return this.priceFomartter.formatPrice(price);
+  }
+
+  buy() {
+    if (this.cart && this.cart.length > 0) {
+      this.authService.userData
+        .subscribe(user => {
+          const order: Order = {
+            uid: user.uid,
+            orderLines: this.cart,
+            totalPrice: this.getTotalPrice()
+          };
+          this.orderService.createOrder(order)
+            .subscribe(() => {
+              this.store.dispatch(new ClearCart());
+              this.router.navigate(['']);
+            });
+        });
+    }
   }
 
 }

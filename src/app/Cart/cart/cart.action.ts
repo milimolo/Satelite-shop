@@ -28,4 +28,10 @@ export class RemoveOrderline {
   }
 }
 
+export class ClearCart {
+  static readonly type = '[Cart] ClearCart';
+
+  constructor() {}
+}
+
 

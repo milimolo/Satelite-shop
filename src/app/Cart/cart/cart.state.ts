@@ -1,7 +1,7 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {Injectable} from '@angular/core';
 import {Orderline} from '../../Orders/shared/orderline.model';
-import {AddToCart, DecreaseProductAmount, IncreaseProductAmount, RemoveOrderline} from './cart.action';
+import {AddToCart, ClearCart, DecreaseProductAmount, IncreaseProductAmount, RemoveOrderline} from './cart.action';
 import {Product} from '../../Products/shared/product.model';
 
 export class CartStateModel {
@@ -96,6 +96,15 @@ export class CartState {
     ctx.setState({
       ...state,
       orderlines: orderlinesNew
+    });
+  }
+
+  @Action(ClearCart)
+  ClearCart(ctx: StateContext<CartStateModel>, action: ClearCart) {
+    const state = ctx.getState();
+    ctx.setState({
+      ...state,
+      orderlines: []
     });
   }
 

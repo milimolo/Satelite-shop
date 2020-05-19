@@ -1,16 +1,16 @@
 <mat-card class="cart-card">
-  <mat-card-header>
-    <mat-card-title>
-      <mat-card-title>Shopping Cart</mat-card-title>
-    </mat-card-title>
-    <mat-card-subtitle>
-      <mat-divider></mat-divider>
-      <mat-card-title>Total Price: {{formatPrice(getTotalPrice())}}</mat-card-title>
-      <button mat-raised-button color="primary">Buy</button>
-    </mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <div *ngIf="cart">
+  <div *ngIf="cart">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-card-title>Shopping Cart</mat-card-title>
+      </mat-card-title>
+      <mat-card-subtitle *ngIf="cart.length > 0">
+        <mat-divider></mat-divider>
+        <mat-card-title>Total Price: {{formatPrice(getTotalPrice())}}</mat-card-title>
+        <button mat-raised-button color="primary" (click)="buy()">Buy</button>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content *ngIf="cart.length > 0">
       <div *ngFor="let orderLine of cart">
         <mat-card>
           <mat-card-content>
@@ -35,8 +35,14 @@
       </div>
       <div>
         <h4>Total: {{formatPrice(getTotalPrice())}}</h4>
-        <button mat-raised-button color="primary">Buy</button>
+        <button mat-raised-button color="primary" (click)="buy()">Buy</button>
       </div>
-    </div>
-  </mat-card-content>
+    </mat-card-content>
+    <mat-card-content *ngIf="cart.length === 0">
+      <div>
+        <h4>Looks like your cart is empty!</h4>
+        <h4>Check out our products to fill up the cart!</h4>
+      </div>
+    </mat-card-content>
+  </div>
 </mat-card>
