@@ -1,37 +1,61 @@
-
-<div *ngIf="auth && auth.userData | async else login">
-  <button class="button" (click)="auth.signOut()">Logout</button>
-</div>
-<ng-template #login>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h1 *ngIf="auth && auth.userData | async">Hello {{ (auth.userData | async)?.email }}</h1>
-        <div *ngIf="!(auth.userData | async)">
-          <div class="form-group">
-            <label for="email">Email address:</label>
-            <input type="text" class="form-control" [(ngModel)]="email" placeholder="email">
-          </div>
-          <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" [(ngModel)]="password" id="pwd" placeholder="password">
-          </div>
-          <button (click)="signUp()" class="btn btn-default">Sign Up</button>
-          <button (click)="signIn()" class="btn btn-default" style="margin-left:5px;">Login</button>
-        </div>
+<div *ngIf="!((getAuth() && getAuthUserData()) | async)">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <div>
+        <mat-form-field>
+          <mat-label>Email Address</mat-label>
+          <input matInput type="text" class="form-control" [(ngModel)]="email">
+        </mat-form-field>
       </div>
-    </div>
-  </div>
-  <button class="button" (click)="signInWithGoogle()">Login with Google</button>
-</ng-template>
-
-<head>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-</head>
-<div *ngIf="auth.user$ | async as user;">
-  <img src="{{user.photoURL}}" width="100" height="100">
-  <h3>Name: {{user.displayName}}</h3>
-  <h3>Email: {{user.email}}</h3>
-  <button type="edit"><i class="material-icons">settings</i></button>
+      <div>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput type="password" class="form-control" [(ngModel)]="password"/>
+        </mat-form-field>
+      </div>
+      <div>
+        <button (click)="signIn()" mat-raised-button color="primary">Login</button>
+      </div>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <div>
+        <mat-card-subtitle>Don't have an account yet? Sign up here!</mat-card-subtitle>
+      </div>
+      <div>
+        <button (click)="signUp()" mat-raised-button color="accent">Sign Up</button>
+      </div>
+      <div>
+        <mat-divider></mat-divider>
+      </div>
+      <div>
+        <mat-card-subtitle>Or you can login with google instead!</mat-card-subtitle>
+      </div>
+      <div>
+        <button mat-raised-button class="button" (click)="signInWithGoogle()" color="primary">Login with Google</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
 </div>
-<router-outlet></router-outlet>
+<div *ngIf="(getAuth() && getAuthUserData()) | async">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>It seems like you are already logged in</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <h4>Click here to go to your user-page!</h4>
+        <button mat-raised-button color="primary" (click)="goToUserPage()">Your Page</button>
+      </div>
+      <mat-divider></mat-divider>
+      <div>
+        <h4>Or here to log out!</h4>
+        <button mat-raised-button color="accent" (click)="logout()">Log Out</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
