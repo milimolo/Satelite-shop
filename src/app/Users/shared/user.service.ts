@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
-import {User} from "./user.model";
-import {from, Observable} from "rxjs";
+import {User} from './user.model';
+import {from, Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,24 @@ export class UserService {
   }
 
   getUser(uid: string): Observable<User> {
-    return;
+    this.userDoc = this.afs.doc<User>('users/' + uid);
+    return this.userDoc.snapshotChanges().pipe(
+      map(u => {
+        const user = u.payload.data() as User;
+        user.uid = uid;
+        return user;
+      })
+    );
+  }
+
+  updateGoogleUserData({ uid, email, displayName, photoURL }: User): Observable<any> {
+    this.userDoc = this.afs.doc('users/' + uid);
+    const data = {
+      uid,
+      email,
+      displayName,
+      photoURL
+    };
+    return from(this.userDoc.set(data, {merge: true}));
   }
 }
