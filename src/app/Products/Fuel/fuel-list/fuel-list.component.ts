@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {AddToCart} from '../../../Cart/cart/cart.action';
 import {Store} from '@ngxs/store';
+import {PriceFormatterService} from '../../../Shared/Services/price-formatter.service';
 
 @Component({
   selector: 'app-fuel-list',
@@ -16,7 +17,8 @@ export class FuelListComponent implements OnInit {
   fuel$: Observable<Fuel[]>;
   constructor(private fuelService: FuelService,
               private router: Router,
-              private store: Store) { }
+              private store: Store,
+              private priceFormatterService: PriceFormatterService) { }
 
   ngOnInit(): void {
     this.fuel$ = this.fuelService.getAllFuels();
@@ -34,6 +36,9 @@ export class FuelListComponent implements OnInit {
       model: fuel.model
     };
     this.store.dispatch(new AddToCart(product, 1, product.price));
+  }
+  priceFormat(price: number): string {
+    return this.priceFormatterService.formatPrice(price);
   }
 
 }
